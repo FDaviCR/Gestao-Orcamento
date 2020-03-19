@@ -1,0 +1,90 @@
+<%- include ('../../partials/header.ejs')%>
+<%- include ('../../partials/navbar.ejs')%>
+
+<div class="container" >
+    <hr>
+    <h2>Orçamento</h2>    
+    
+    <hr>
+    <div style="font-weight: bold;color:blue;font-size:15px;">
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Numero de Controle: </label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext" value="<%= orcamento.id %>">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Cliente: </label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext" value="<%= orcamento.cliente.nome %>">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Forma de Pagamento: </label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext" value="<%= orcamento.formPagamento %>">
+            </div>
+        </div>
+    </div>
+    <hr>
+    <h2>Itens do Orçamento</h2>
+    <hr>
+    <table class="table table-bordered" id="orcamento-item">
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Preço Unitario</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% orcamentoItens.forEach(orcamentoItem=>{ %>
+                <tr>
+                    
+                    <td><%= orcamentoItem.produto.produto %></td>
+                    <td><%= orcamentoItem.quantidade %></td>
+                    <td><%= orcamentoItem.valorUnitario %></td>
+                    <td><%= orcamentoItem.valorTotal %></td>
+                    
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <form>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Total do Orçamento</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control" id="totalOrcamento">
+            </div>
+        </div>
+    </form>
+    <hr>
+    <div>
+        <a href="/orcamentos/pdf/<%= orcamento.id %>" class="btn btn-outline-primary">Preparar Envio</a><br><br>
+        <form method="POST" action="/orcamentos/envioEmail">
+            <input id="email" name="email" type="hidden" value="<%= orcamento.cliente.email %>">
+            <button class="btn btn-outline-success">Enviar</button>
+        </form>
+    </div>
+    <hr>
+</div>
+
+<%- include ('../../partials/footer.ejs')%>
+
+
+<script>
+    function getTotal(column = 1) {
+        let result = 0;
+        let columns = $("#orcamento-item tr td:nth-child(" + column + ")");
+
+        columns.each(i => {
+            result += parseFloat($(columns[i]).html());
+        });
+
+        return result;
+        
+    }
+    document.getElementById("totalOrcamento").value = parseFloat(getTotal(4)).toFixed(2);
+    document.getElementById("")
+</script>

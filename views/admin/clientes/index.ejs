@@ -1,0 +1,52 @@
+<%- include ('../../partials/header.ejs')%>
+<%- include ('../../partials/navbar.ejs')%>
+<br>
+<br>
+<hr>
+<div class="container">
+    <hr>
+    <h2>Clientes</h2>
+    <hr>
+    <a class="btn btn-success" href="/clientes/new">Novo Cliente</a>
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Cliente</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% clientes.forEach(cliente => { %>
+                <tr>
+                    <th><%= cliente.id %></th>
+                    <th><%= cliente.nome%></th>
+                    <th>
+                        <a href="/clientes/edit/<%= cliente.id %>" class="btn btn-warning">Editar</a>
+                        <form method="POST" action="/clientes/delete" style="display: inline;" onsubmit="confirmarDelecao(event, this)">
+                            <input type="hidden" name="id" value="<%= cliente.id %>">
+                            <button class="btn btn-danger">Deletar</button>
+                        </form>
+                    </th>
+                </tr>
+            <%}) %>
+        </tbody>
+    </table>
+</div>
+
+<%- include ('../../partials/footer.ejs')%>
+
+<script>
+    function confirmarDelecao(event, form){
+        event.preventDefault();
+        var decision = confirm("Você quer deletar o cliente?");
+        if(decision){
+            form.submit();
+        }else{
+            console.log("Foi um acidente");
+        }
+
+    }
+
+</script>

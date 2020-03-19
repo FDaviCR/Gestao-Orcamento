@@ -1,0 +1,27 @@
+<%- include ('../../partials/header.ejs')%>
+<%- include ('../../partials/navbar.ejs')%>
+<br>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2>Atualização de Forcedores</h2>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="/fornecedores/update">
+                <input class="form-control" type="text" name="nome" placeholder="Defina o nome do fornecedor" value="<%= fornecedor.nome %>"><br>
+                <input class="form-control" type="text" name="cpf" placeholder="Preencha com o CPF" value="<%= fornecedor.cpf %>"><br>
+                <input class="form-control" type="text" name="cnpj" placeholder="Preencha com o CNPJ" value="<%= fornecedor.cnpj %>"><br>
+                <input class="form-control" type="tel" name="telefone1" placeholder="Preencha com o telefone" value="<%= fornecedor.telefone1 %>"><br>
+                <input class="form-control" type="tel" name="telefone2" placeholder="Preencha com o telefone" value="<%= fornecedor.telefone2 %>"><br>
+                <input class="form-control" type="email" name="email" placeholder="Preencha com o e-mail" value="<%= fornecedor.email %>"><br>
+                <input class="form-control" type="text" name="endereco" placeholder="Preencha o endereço" value="<%= fornecedor.endereco %>"><br>
+                <input class="form-control" type="number" name="numero" placeholder="Preencha o número do endereço" value="<%= fornecedor.numero %>"><br>
+                
+                <input type="hidden" name="id" value="<%= fornecedor.id %>">
+                <button class="btn btn-primary">Atualizar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include ('../../partials/footer.ejs')%></input>

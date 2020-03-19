@@ -1,0 +1,50 @@
+<%- include ('../../partials/header.ejs')%>
+<%- include ('../../partials/navbar.ejs')%>
+<br>
+<br>
+<hr>
+<div class="container">
+    <hr>
+    <h2>Estoques</h2>
+    <hr>
+    <a class="btn btn-success" href="/estoques/new">Novo Estoque</a>
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Estoque</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% estoques.forEach(estoque => { %>
+                <tr>
+                    <th><%= estoque.id %></th>
+                    <th><%= estoque.descricao %></th>
+                    <th><%= estoque.status %></th>
+                    <th >
+                        <a href="/estoques/edit/<%= estoque.id %>" class="btn btn-warning">Editar</a>
+                    </th>
+                </tr>
+            <%}) %>
+        </tbody>
+    </table>
+</div>
+
+<%- include ('../../partials/footer.ejs')%>
+
+<script>
+    function confirmarDelecao(event, form){
+        event.preventDefault();
+        var decision = confirm("Você quer deletar o estoque?");
+        if(decision){
+            form.submit();
+        }else{
+            console.log("Foi um acidente");
+        }
+
+    }
+
+</script>

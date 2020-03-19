@@ -1,0 +1,61 @@
+<%- include ('../../partials/header.ejs')%>
+<%- include ('../../partials/navbar.ejs')%>
+<br>
+<br>
+<hr>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2>Item de Orçamento</h2>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="/orcamentoItens/save">
+                <input value="<%= idOrcamento%>" name="orcamentoItens" type="hidden">
+                <label>Produto:</label>
+                <select id="produto" name="produto" class="form-control">
+                    <option value="0">Selecione um produto</option>>
+                    <% produtos.forEach((produto)=>{ %>
+                        <option value="<%= produto.id%>" data-valor="<%= produto.valor %>"><%= produto.produto%></option>
+                    <% }) %>
+                </select>
+                <label>Quantidade:</label>
+                <input class="form-control" type="number" id="quantidade" name="quantidade" placeholder="Defina uma quantidade" onblur="calcular()">
+                <label>Desconto:</label>
+                <select id="desconto" name="desconto" class="form-control">
+                    <option value="0">Selecione o desconto</option>
+                    <option value="1">Sem desconto</option>
+                    <option value="0.9">10% de desconto</option>
+                    <option value="0.8">20% de desconto</option>
+                </select>
+                <label>Valor Unitario:</label>
+                <input class="form-control" type="text" id="unitario" name="unitario"readonly>
+                <label>Valor Total:</label>
+                <input class="form-control" type="text" id="total" name="total" readonly><br>
+                <button class="btn btn-primary">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include ('../../partials/footer.ejs')%></div>
+
+<script>
+    function calcular() {
+        var val = Number(document.getElementById("unitario").value);
+        var desc = Number(document.getElementById("desconto").value);
+	    var quant = Number(document.getElementById("quantidade").value);
+	    
+        document.getElementById("total").value = parseFloat(quant*(val*desc)).toFixed(2);
+        console.log(quant*val);
+    }
+    
+    $("#produto").change(function () {
+        var uni = ($(this).find(':selected').data('valor'));
+        document.getElementById("unitario").value = parseFloat(uni).toFixed(2);
+        calcular();
+    });
+
+    $("#desconto").change(function () {
+        calcular();
+    });
+</script>

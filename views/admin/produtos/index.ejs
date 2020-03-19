@@ -1,0 +1,52 @@
+<%- include ('../../partials/header.ejs')%>
+<%- include ('../../partials/navbar.ejs')%>
+<br>
+<br>
+<hr>
+<div class="container">
+    <hr>
+    <h2>Produtos</h2>
+    <hr>
+    <a class="btn btn-success" href="/produtos/new">Novo Produto</a>
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Produto</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% produtos.forEach(produto=>{ %>
+                <tr>
+                    <th><%= produto.id %></th>
+                    <th><%= produto.produto%></th>
+                    <th>
+                        <a href="/produtos/edit/<%= produto.id %>" class="btn btn-warning">Editar</a>
+                        <form method="POST" action="/produtos/delete" style="display: inline;" onsubmit="confirmarDelecao(event, this)">
+                            <input type="hidden" name="id" value="<%= produto.id %>">
+                            <button class="btn btn-danger">Deletar</button>
+                        </form>
+                    </th>
+                </tr>
+            <%}) %>
+        </tbody>
+    </table>
+</div>
+
+<%- include ('../../partials/footer.ejs')%>
+
+<script>
+    function confirmarDelecao(event, form){
+        event.preventDefault();
+        var decision = confirm("Você quer deletar a categoria?");
+        if(decision){
+            form.submit();
+        }else{
+            console.log("Foi um acidente");
+        }
+
+    }
+
+</script>

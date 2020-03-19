@@ -1,0 +1,76 @@
+<%- include ('../../partials/header.ejs')%>
+<%- include ('../../partials/navbar.ejs')%>
+<br>
+<br>
+<hr>
+<div class="container">
+    <hr>
+    <h2>Itens do Orçamento</h2>
+    <hr>
+    <a class="btn btn-success" href="/orcamentoItens/new/<%= idOrcamento %>">Novo Item</a>
+
+    <hr>
+    <table id="orcamento-item" class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Valor Unitario</th>
+                <th>Quantidade</th>
+                <th>Valor Total</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <input value="<%= idOrcamento %>" type="hidden" id="idOrcamento" name="idOrcamento">
+            <% orcamentoItens.forEach(orcamentoItem=>{ %>
+                <tr>
+                    <td><%= orcamentoItem.produto.produto%></td>
+                    <td><%= orcamentoItem.valorUnitario %></td>
+                    <td><%= orcamentoItem.quantidade %></td>
+                    <td><%= orcamentoItem.valorTotal %></td>
+                    <td>
+                        <form method="POST" action="/orcamentoItens/delete" style="display: inline;" onsubmit="confirmarDelecao(event, this)">
+                            <input type="hidden" name="id" value="<%= orcamentoItem.id %>">
+                            <button class="btn btn-danger">Deletar</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <form>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Total do Orçamento</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control" id="totalOrcamento">
+            </div>
+        </div>
+    </form>
+</div>
+
+<%- include ('../../partials/footer.ejs')%>
+
+<script>
+    function confirmarDelecao(event, form){
+        event.preventDefault();
+        var decision = confirm("Você quer deletar o orçamento?");
+        if(decision){
+            form.submit();
+        }else{
+            console.log("Foi um acidente");
+        }
+    }
+
+    function getTotal(column = 1) {
+        let result = 0;
+        let columns = $("#orcamento-item tr td:nth-child(" + column + ")");
+
+        columns.each(i => {
+            result += parseFloat($(columns[i]).html());
+        });
+
+        return result;
+        
+    }
+    document.getElementById("totalOrcamento").value = parseFloat(getTotal(4)).toFixed(2);
+</script>

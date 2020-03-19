@@ -1,0 +1,59 @@
+<%- include ('../../partials/header.ejs')%>
+<%- include ('../../partials/navbar.ejs')%>
+<br>
+<br>
+<hr>
+<div class="container">
+    <hr>
+    <h2>Orçamentos</h2>
+    <hr>
+    <a class="btn btn-success" href="/admin/orcamentos/new">Novo Orçamento</a>
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Cliente</th>
+                <th>Forma de Pagamento</th>
+                <th>Tipo</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% orcamentos.forEach(orcamento=>{ %>
+                <tr>
+                    <td><%= orcamento.id %></td>
+                    <td><%= orcamento.cliente.nome %></td>
+                    <td><%= orcamento.formPagamento %></td>
+                    <td><%= orcamento.tipo %></td>
+                    <td>
+                        <a href="/orcamentos/edit/<%= orcamento.id %>" class="btn btn-warning">Editar</a>
+                        <a href="/orcamentoItens/<%= orcamento.id %>" class="btn btn-info">Adicionar Itens</a>
+                        <form method="POST" action="/orcamentos/delete" style="display: inline;" onsubmit="confirmarDelecao(event, this)">
+                            <input type="hidden" name="id" value="<%= orcamento.id %>">
+                            <button class="btn btn-danger">Deletar</button>
+                        </form>
+                        <a href="/orcamentos/visualizar/<%= orcamento.id %>" class="btn btn-dark">Visualizar</a>
+                        <a href="/pedidos/gerar/<%= orcamento.id %>" class="btn btn-success">Gerar Pedido</a>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+
+<%- include ('../../partials/footer.ejs')%>
+
+<script>
+    function confirmarDelecao(event, form){
+        event.preventDefault();
+        var decision = confirm("Você quer deletar o orçamento?");
+        if(decision){
+            form.submit();
+        }else{
+            console.log("Foi um acidente");
+        }
+
+    }
+
+</script>

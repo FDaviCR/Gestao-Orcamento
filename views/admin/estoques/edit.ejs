@@ -1,0 +1,25 @@
+<%- include ('../../partials/header.ejs')%>
+<%- include ('../../partials/navbar.ejs')%>
+<br>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2>Atualização de Estoques</h2>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="/estoques/update">
+                <input class="form-control" type="text" name="descricao" placeholder="Defina o nome do estoque" value="<%= estoque.descricao %>"><br>
+                <input class="form-control" type="text" name="detalhes" placeholder="Defina detalhes sobre o estoque" value="<%= estoque.detalhes %>"><br>
+                <select name="status" class="selector form-control">
+                    <option value="Ativo">Ativo</option>
+                    <option value="Inativo">Inativo</option>
+                </select><br>
+
+                <input type="hidden" name="id" value="<%= estoque.id %>">
+                <button class="btn btn-primary">Atualizar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include ('../../partials/footer.ejs')%>

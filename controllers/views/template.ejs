@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+        table {
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        </style>
+    <body>
+        <div style="width: 85%; margin: 0 7.5%;">
+            <div style="text-align: center; padding-left: 50px;">            
+                <h1>Orçamento</h1>
+                <hr>
+                <div style="font-weight: bold;font-size:15px; text-align:left">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Numero de Controle: </label>
+                        <label><%= orcamento.id %></label>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Cliente: </label>
+                        <label><%= orcamento.cliente.nome %></label>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Forma de Pagamento: </label>
+                        <label><%= orcamento.formPagamento %></label>
+                    </div>
+                </div>
+                <hr>
+
+                <h2>Itens do Orçamento</h2>
+                <hr>
+                <table class="table table-bordered" id="orcamento-item" style="width: 85%; margin: 0 7.5%;">
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Quantidade</th>
+                            <th>Preço Unitario</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% orcamentoItens.forEach(orcamentoItem=>{ %>
+                            <tr>
+                                <td><%= orcamentoItem.produto.produto %></td>
+                                <td><%= orcamentoItem.quantidade %></td>
+                                <td><%= orcamentoItem.valorUnitario %></td>
+                                <td><%= orcamentoItem.valorTotal %></td>                
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+                <form>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Total do Orçamento</label>
+                        <label><%= orcamento.valor %></label>
+                    </div>
+                </form>
+                
+             </div>
+        </div>
+    </body>
+</html>
