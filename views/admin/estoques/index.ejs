@@ -26,6 +26,12 @@
                     <th><%= estoque.status %></th>
                     <th >
                         <a href="/estoques/edit/<%= estoque.id %>" class="btn btn-warning">Editar</a>
+                        <a href="/estoqueItens/<%= estoque.id %>" class="btn btn-info">Adicionar Produtos</a>
+                        <form method="POST" action="/estoques/delete" style="display: inline;" onsubmit="confirmarDelecao(event, this)">
+                            <input type="hidden" name="id" value="<%= estoque.id %>">
+                            <button class="btn btn-danger">Deletar</button>
+                        </form>
+                        <a href="/orcamentos/visualizar/<%= estoque.id %>" class="btn btn-dark">Visualizar</a>
                     </th>
                 </tr>
             <%}) %>

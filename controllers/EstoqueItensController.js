@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const Cliente = require("../models/Clientes");
 const Produto = require("../models/Produtos");
+const EstoqueItens = require("../models/EstoqueItens");
+const adminAuth = require("../middleware/adminAuth");
 
 
 router.get("/estoqueItens/:id", adminAuth,(req, res)=>{
@@ -23,15 +25,15 @@ router.get("/estoqueItens/new/:id", adminAuth, (req, res)=>{
 
 router.post("/estoqueItens/save", (req, res)=>{
     var quantidade = req.body.quantidade;
-    var valorUnitario = req.body.unitario;
-    var valorTotal = req.body.total;
-    var estoqueId = req.body.estoqueItens;
+    var apelido = req.body.apelido;
+    var unidade = req.body.unidade;
+    var estoqueId = req.body.estoqueIdent;
     var produtoId = req.body.produto;
 
     EstoqueItens.create({
         quantidade: quantidade,
-        valorUnitario:valorUnitario,
-        valorTotal:valorTotal,
+        unidade:unidade,
+        apelido:apelido,
         estoqueId:estoqueId,
         produtoId:produtoId
     }).then(()=>{
@@ -81,3 +83,7 @@ router.get("/estoques/visualizar/:id",  adminAuth, (req, res)=>{
         res.redirect("/");
     });
 });
+
+
+
+module.exports = router;

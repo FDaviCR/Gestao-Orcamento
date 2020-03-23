@@ -44,6 +44,7 @@ router.get("/login", (req, res) => {
 router.post("/authenticate", (req,res) => {
     var login = req.body.email;
     var password = req.body.password;
+    req.session.usuario = login;
 
     User.findOne({where:{login:login}}).then(user=>{
         if(user != undefined){

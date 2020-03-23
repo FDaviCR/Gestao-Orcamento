@@ -10,6 +10,10 @@ const Produto = connection.define('produtos',{
     valor:{
         type: Sequelize.DECIMAL(15,2),
         allowNull: false
+    },
+    usuario:{
+        type: Sequelize.STRING,
+        allowNull: false
     }
 })
 

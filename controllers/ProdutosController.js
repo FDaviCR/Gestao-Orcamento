@@ -15,7 +15,8 @@ router.post("/produtos/save", (req, res)=>{
     if(produto != undefined){
         Produtos.create({
             produto: produto,
-            valor: valor
+            valor: valor,
+            usuario: req.session.usuario
         }).then(()=>{
             res.redirect("/produtos");
         })

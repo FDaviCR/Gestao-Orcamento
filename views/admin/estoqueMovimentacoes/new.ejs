@@ -1,0 +1,80 @@
+<%- include ('../../partials/header.ejs')%>
+<%- include ('../../partials/navbar.ejs')%>
+<br>
+<br>
+<hr>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2>Movimentação de Estoque</h2>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="/estoqueMovimentacoes/save">
+                
+                <label>Tipo:</label>
+                <select id="tipo" name="tipo" class="form-control">
+                    <option value="">Selecione o tipo de Movimentação</option>
+                    <option value="Entrada">Entrada</option>
+                    <option value="Saida">Saida</option>
+                </select>
+
+                <label>Produto:</label>
+                <select id="produto" name="produto" class="form-control">
+                    <option value="0">Selecione um produto</option>
+                    <% estoqueItens.forEach((estoqueItem)=>{ %>
+                        <option value="<%= estoqueItem.produtoId %>" data-item="<%= estoqueItem.id %>" data-estoque="<%= estoqueItem.estoqueId %>" data-quantidade="<%= estoqueItem.quantidade %>">
+                            Produto:<%= estoqueItem.produto.produto %> | Estoque: <%= estoqueItem.estoque.descricao %> | Quantidade :<%= estoqueItem.quantidade %>
+                        </option>
+                    <% }) %>
+                </select>
+
+                <label>Quantidade:</label>
+                <input class="form-control" type="number" id="quantidade" name="quantidade" placeholder="Defina uma quantidade" onblur="calcular()">
+                
+                <label>Estoque Atual:</label>
+                <input class="form-control" type="number" id="estoque" name="estoque" readonly>
+                
+                <label>Projeção do estoque:</label>
+                <input class="form-control" type="number" id="atualizado" name="atualizado" readonly>
+                <br>
+                <input class="form-control" type="hidden" id="estoqueIdent" name="estoqueIdent" readonly>
+                <input class="form-control" type="hidden" id="estoqueItemId" name="estoqueItemId" readonly>
+
+                <button class="btn btn-primary">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include ('../../partials/footer.ejs')%></div>
+
+<script>
+    function calcular() {
+        var mud = Number(document.getElementById("estoque").value);
+        var quant = Number(document.getElementById("quantidade").value);
+        
+        if(document.getElementById("tipo").value == 'Entrada'){
+            document.getElementById("atualizado").value = parseFloat(quant+mud).toFixed(2);
+        }else{
+            document.getElementById("atualizado").value = parseFloat(mud-quant).toFixed(2);
+        }
+        console.log(quant-mud);
+    }
+    
+    $("#produto").change(function () {
+        var quantest = ($(this).find(':selected').data('quantidade'));
+        document.getElementById("estoque").value = parseFloat(quantest).toFixed(2);
+        calcular();
+    });
+
+    $("#produto").change(function () {
+        var idEst = ($(this).find(':selected').data('estoque'));
+        document.getElementById("estoqueIdent").value = parseInt(idEst);
+    });
+    
+    $("#produto").change(function () {
+        var itemEstoqueId = ($(this).find(':selected').data('item'));
+        document.getElementById("estoqueItemId").value = parseInt(itemEstoqueId);
+    });
+
+</script>

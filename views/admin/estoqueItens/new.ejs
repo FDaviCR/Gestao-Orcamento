@@ -1,0 +1,40 @@
+<%- include ('../../partials/header.ejs')%>
+<%- include ('../../partials/navbar.ejs')%>
+<br>
+<br>
+<hr>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2>Adicionar Produto ao Estoque</h2>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="/estoqueItens/save">
+                <input value="<%= idEstoque %>" name="estoqueIdent" type="hidden">
+                <label>Produto:</label>
+                <select id="produto" name="produto" class="form-control">
+                    <option value="0">Selecione um produto</option>>
+                    <% produtos.forEach((produto)=>{ %>
+                        <option value="<%= produto.id %>" data-valor="<%= produto.valor %>"><%= produto.produto%></option>
+                    <% }) %>
+                </select>
+                <label>Apelido:</label>
+                <input class="form-control" id="apelido" name="apelido" placeholder="Defina um apelido para o produto">
+                <label>Quantidade:</label>
+                <input class="form-control" type="number" id="quantidade" name="quantidade" placeholder="Defina uma quantidade">
+                <label>Unidade:</label>
+                <select id="unidade" name="unidade" class="form-control">
+                    <option value="">Selecione a unidade</option>
+                    <option value="KG">Quilo(s)</option>
+                    <option value="G">Grama(s)</option>
+                    <option value="L">Litros(s)</option>
+                </select>
+                <br>
+                <button class="btn btn-primary">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include ('../../partials/footer.ejs')%></div>
+

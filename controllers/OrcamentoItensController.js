@@ -12,6 +12,7 @@ let path = require("path");
 
 router.get("/orcamentoItens/:id", adminAuth,(req, res)=>{
     var idOrcamento = req.params.id;
+
     OrcamentoItens.findAll({
         where:{ orcamentoId: idOrcamento},
         include: [{model: Produto}]

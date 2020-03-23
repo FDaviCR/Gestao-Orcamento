@@ -1,0 +1,47 @@
+<%- include ('../../partials/header.ejs')%>
+<%- include ('../../partials/navbar.ejs')%>
+<br>
+<br>
+<hr>
+<div class="container">
+    <hr>
+    <h2>Movimentações de Estoques</h2>
+    <hr>
+    <a class="btn btn-success" href="/estoqueMovimentacoes/new">Nova Movimentação</a>
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Estoque</th>
+                <th>Produto</th>
+                <th>Tipo</th>
+                <th>Quantidade</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% estoqueMovimentacoes.forEach(estoqueMovimentacao=>{ %>
+                <tr>
+                    <td><%= estoqueMovimentacao.estoque.descricao %></td>
+                    <td><%= estoqueMovimentacao.produto.produto %></td>
+                    <td><%= estoqueMovimentacao.tipo %></td>
+                    <td><%= estoqueMovimentacao.quantidade %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+
+<%- include ('../../partials/footer.ejs')%>
+
+<script>
+    function confirmarDelecao(event, form){
+        event.preventDefault();
+        var decision = confirm("Você quer deletar o orçamento?");
+        if(decision){
+            form.submit();
+        }else{
+            console.log("Foi um acidente");
+        }
+    }
+
+</script>

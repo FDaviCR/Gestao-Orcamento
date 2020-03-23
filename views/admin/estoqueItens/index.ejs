@@ -1,0 +1,53 @@
+<%- include ('../../partials/header.ejs')%>
+<%- include ('../../partials/navbar.ejs')%>
+<br>
+<br>
+<hr>
+<div class="container">
+    <hr>
+    <h2>Produtos em Estoque</h2>
+    <hr>
+    <a class="btn btn-success" href="/estoqueItens/new/<%= idEstoque %>">Novo Item</a>
+
+    <hr>
+    <table id="orcamento-item" class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Apelido</th>
+                <th>Quantidade</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <input value="<%= idEstoque %>" type="hidden" id="idEstoque" name="idEstoque">
+            <% estoqueItens.forEach(estoqueItem=>{ %>
+                <tr>
+                    <td><%= estoqueItem.produto.produto%></td>
+                    <td><%= estoqueItem.apelido %></td>
+                    <td><%= estoqueItem.quantidade %></td>
+                    <td>
+                        <form method="POST" action="/estoqueItens/delete" style="display: inline;" onsubmit="confirmarDelecao(event, this)">
+                            <input type="hidden" name="id" value="<%= estoqueItem.id %>">
+                            <button class="btn btn-danger">Deletar</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+
+<%- include ('../../partials/footer.ejs')%>
+
+<script>
+    function confirmarDelecao(event, form){
+        event.preventDefault();
+        var decision = confirm("Você quer deletar o orçamento?");
+        if(decision){
+            form.submit();
+        }else{
+            console.log("Foi um acidente");
+        }
+    }
+</script>

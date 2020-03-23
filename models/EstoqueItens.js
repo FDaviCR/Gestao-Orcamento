@@ -9,6 +9,10 @@ const EstoqueItens = connection.define('estoqueItens',{
         type: Sequelize.DECIMAL(18,2),
         allowNull: false
     },
+    apelido:{
+        type: Sequelize.STRING,
+        allowNull: true
+    },
     unidade:{
         type: Sequelize.STRING,
         allowNull: false

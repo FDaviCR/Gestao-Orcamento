@@ -5,7 +5,6 @@ const bodyParser = require("body-parser"); //Importando Body Parser
 const connection = require("./database/database");
 const adminAuth = require("./middleware/adminAuth");
 
-
 const usersController = require("./controllers/UsersController");
 const produtosController = require("./controllers/ProdutosController");
 const clientesController = require("./controllers/ClientesController");
@@ -13,7 +12,8 @@ const fornecedoresController = require("./controllers/FornecedoresController");
 const orcamentosController = require("./controllers/OrcamentosController");
 const orcamentoItensController = require("./controllers/OrcamentoItensController");
 const estoqueController = require("./controllers/EstoquesController");
-
+const estoqueItensController = require("./controllers/EstoqueItensController");
+const estoqueMovimentacoesController = require("./controllers/EstoqueMovimentacoesController");
 
 const User = require("./models/Users");
 const Produtos = require("./models/Produtos");
@@ -22,6 +22,8 @@ const Fornecedores = require("./models/Fornecedores");
 const Orcamento = require("./models/Orcamentos");
 const OrcamentoItens = require("./models/OrcamentoItens");
 const Estoques = require("./models/Estoques");
+const EstoqueItens = require("./models/EstoqueItens");
+const EstoqueMovimentacoes = require("./models/EstoqueMovimentacoes");
 
 // View engine
 app.set('view engine','ejs');
@@ -56,6 +58,8 @@ app.use("/", fornecedoresController);
 app.use("/", orcamentosController);
 app.use("/", orcamentoItensController);
 app.use("/", estoqueController);
+app.use("/", estoqueItensController);
+app.use("/", estoqueMovimentacoesController);
 
 // Router
 app.get("/", adminAuth, (req, res) => {
