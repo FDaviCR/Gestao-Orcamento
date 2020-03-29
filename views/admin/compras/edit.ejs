@@ -1,0 +1,36 @@
+<%- include ('../../partials/header.ejs')%>
+<%- include ('../../partials/navbar.ejs')%>
+<br>
+<br>
+<hr>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2>Editar Compra</h2>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="/compras/update">
+                <input id="idcompra" name="idcompra" type="hidden" value="<%= compra.id %>">
+                <label>fornecedor:</label>
+                <select name="fornecedor" class="form-control">
+                    <% fornecedores.forEach((fornecedor)=>{ %>
+                        <%if(fornecedor.id == compra.fornecedorId) {%>
+                            <option value="<%= fornecedor.id %>" selected><%= fornecedor.nome %></option>
+                        <% } else { %>
+                            <option value="<%= fornecedor.id %>"><%= fornecedor.nome %></option>
+                        <% } %>
+                    <% }) %>
+                </select>
+                <label>Nota:</label>
+                <input class="form-control" id="nota" name="nota" placeholder="Informe o número da nota" value="<%= compra.nota %>">
+                <label>Valor:</label>
+                <input class="form-control" id="valor" name="valor" placeholder="Informe o valor total da nota" value="<%= compra.valor %>">
+                <label>Descrição:</label>
+                <input class="form-control" id="descricao" name="descricao" placeholder="Observações" value="<%= compra.descricao %>">
+                <br>
+                
+                <button class="btn btn-primary">Atualizar</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+<%- include ('../../partials/header.ejs')%>
+<%- include ('../../partials/navbar.ejs')%>
+<br>
+<br>
+<hr>
+<div class="container">
+    <hr>
+    <h2>Orçamentos</h2>
+    <hr>
+    <a class="btn btn-success" href="/compras/new">Novo Orçamento</a>
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fornecedor</th>
+                <th>Nota</th>
+                <th>Valor</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% compras.forEach(compra=>{ %>
+                <tr>
+                    <td><%= compra.id %></td>
+                    <td><%= compra.fornecedore.nome %></td>
+                    <td><%= compra.nota %></td>
+                    <td><%= compra.valor %></td>
+                    <td>
+                        <a href="/compras/edit/<%= compra.id %>" class="btn btn-warning">Editar</a>
+                        <a href="/compraItens/<%= compra.id %>" class="btn btn-info">Adicionar Itens</a>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+
+<%- include ('../../partials/footer.ejs')%>
+
+<script>
+    function confirmarDelecao(event, form){
+        event.preventDefault();
+        var decision = confirm("Você quer deletar o orçamento?");
+        if(decision){
+            form.submit();
+        }else{
+            console.log("Foi um acidente");
+        }
+
+    }
+
+</script>
