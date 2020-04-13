@@ -15,6 +15,7 @@ const estoqueController = require("./controllers/EstoquesController");
 const estoqueItensController = require("./controllers/EstoqueItensController");
 const estoqueMovimentacoesController = require("./controllers/EstoqueMovimentacoesController");
 const comprasController = require("./controllers/ComprasController");
+const compraItensController = require("./controllers/CompraItensController");
 
 const User = require("./models/Users");
 const Produtos = require("./models/Produtos");
@@ -26,6 +27,7 @@ const Estoques = require("./models/Estoques");
 const EstoqueItens = require("./models/EstoqueItens");
 const EstoqueMovimentacoes = require("./models/EstoqueMovimentacoes");
 const Compras = require("./models/Compras");
+const CompraItens = require("./models/CompraItens");
 
 // View engine
 app.set('view engine','ejs');
@@ -63,12 +65,12 @@ app.use("/", estoqueController);
 app.use("/", estoqueItensController);
 app.use("/", estoqueMovimentacoesController);
 app.use("/", comprasController);
+app.use("/", compraItensController);
 
 // Router
 app.get("/", adminAuth, (req, res) => {
     res.render("index.ejs");
 })
-
 
 // End Router
 app.listen(3000, () => {

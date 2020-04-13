@@ -5,7 +5,7 @@ const Compra = require("./Compras");
 const Produto = require("./Produtos");
 const EstoqueItens = require("./EstoqueItens");
 
-const CompraItens = connection.define('CompraItens',{
+const CompraItens = connection.define('compraitens',{
     quantidade:{
         type: Sequelize.DECIMAL(18,2),
         allowNull: false

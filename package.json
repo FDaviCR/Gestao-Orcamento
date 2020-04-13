@@ -2,24 +2,30 @@
   "name": "aptumgst",
   "version": "1.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "clean-webpack-plugin": "^3.0.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "html-pdf": "^2.2.0",
+    "html-webpack-plugin": "^4.0.4",
+    "mini-css-extract-plugin": "^0.9.0",
     "mysql2": "^2.1.0",
     "nodemailer": "^6.4.5",
     "pg": "^7.18.2",
     "pg-hstore": "^2.3.3",
+    "save": "^2.4.0",
     "sequelize": "^5.21.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
+    "start": "nodemon index.js",
     "build": "webpack"
   },
   "author": "",
