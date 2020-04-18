@@ -5,7 +5,7 @@ html {
 }
 body {
     min-height: 100%;
-    background: turquoise;
+    background: rgb(58, 58, 110);/* turquoise; */
     margin-bottom: 5%;
 }
 

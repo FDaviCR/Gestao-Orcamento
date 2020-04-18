@@ -10,12 +10,18 @@ router.get("/produtos/new", adminAuth, (req, res)=>{
 
 router.post("/produtos/save", (req, res)=>{
     var produto = req.body.produto;
-	var valor = req.body.valor;
+    var categoria = req.body.categoria;
+    var valor = req.body.valor;
+    var custo = req.body.custo;
+    var unidade = req.body.unidade;
 	
     if(produto != undefined){
         Produtos.create({
             produto: produto,
+            categoria: categoria,
             valor: valor,
+            custo: custo,
+            unidade: unidade,
             usuario: req.session.usuario
         }).then(()=>{
             res.redirect("/produtos");
@@ -75,9 +81,12 @@ router.get("/produtos/edit/:id", adminAuth,(req, res)=>{
 router.post("/produtos/update", (req, res)=>{
     var id = req.body.id;
     var produto = req.body.produto;
-	var valor = req.body.valor;
+    var categoria = req.body.categoria;
+    var valor = req.body.valor;
+    var custo = req.body.custo;
+    var unidade = req.body.unidade;
 
-    Produtos.update({produto:produto, valor: valor },{
+    Produtos.update({produto:produto, categoria:categoria, valor:valor, custo:custo, unidade:unidade, usuario: req.session.usuario },{
         where:{
             id:id
         }
