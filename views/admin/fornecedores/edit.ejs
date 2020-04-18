@@ -8,13 +8,31 @@
         </div>
         <div class="card-body">
             <form method="POST" action="/fornecedores/update">
+                <label>Nome</label>
                 <input class="form-control" type="text" name="nome" placeholder="Defina o nome do fornecedor" value="<%= fornecedor.nome %>"><br>
+                <label>Tipo de documento</label>
+                <select id="tipo_documento" name="tipo_documento" class="form-control">
+                    <option value="">Selecione o tipo de documento</option>
+                    <option value=0>Cpf</option>
+                    <option value=1>Cnpj</option>
+                </select>
+                <label>CPF</label>
                 <input class="form-control" type="text" name="cpf" placeholder="Preencha com o CPF" value="<%= fornecedor.cpf %>"><br>
+                <label>CNPJ</label>
                 <input class="form-control" type="text" name="cnpj" placeholder="Preencha com o CNPJ" value="<%= fornecedor.cnpj %>"><br>
+                <label>Inscrição Municipal</label><br>
+                <input class="form-control" type="text" name="inscricao_municipal" placeholder="Preencha a Inscrição Municipal" value="<%= fornecedor.inscricao_municipal %>"><br>
+                <label>Inscrição Estadual</label><br>
+                <input class="form-control" type="text" name="inscricao_estadual" placeholder="Preencha a Inscrição Estadual" value="<%= fornecedor.inscricao_estadual %>"><br>
+                <label>Telefone 1</label>
                 <input class="form-control" type="tel" name="telefone1" placeholder="Preencha com o telefone" value="<%= fornecedor.telefone1 %>"><br>
+                <label>Telefone 2</label>
                 <input class="form-control" type="tel" name="telefone2" placeholder="Preencha com o telefone" value="<%= fornecedor.telefone2 %>"><br>
+                <label>E-mail</label>
                 <input class="form-control" type="email" name="email" placeholder="Preencha com o e-mail" value="<%= fornecedor.email %>"><br>
+                <label>Endereço</label>
                 <input class="form-control" type="text" name="endereco" placeholder="Preencha o endereço" value="<%= fornecedor.endereco %>"><br>
+                <label>Número</label>
                 <input class="form-control" type="number" name="numero" placeholder="Preencha o número do endereço" value="<%= fornecedor.numero %>"><br>
                 
                 <input type="hidden" name="id" value="<%= fornecedor.id %>">

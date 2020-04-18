@@ -7,13 +7,25 @@ const Fornecedor = connection.define('fornecedores',{
         type: Sequelize.STRING,
         allowNull: false
     },
+    tipo_documento:{
+        type: Sequelize.BOOLEAN,
+        allowNull: false
+    },
     cpf:{
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     cnpj:{
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
+    },
+    inscricao_municipal:{
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    inscricao_estadual:{
+        type: Sequelize.STRING,
+        allowNull: true
     },
     telefone1:{
         type: Sequelize.STRING,

@@ -10,8 +10,11 @@ router.get("/fornecedores/new", adminAuth, (req, res)=>{
 
 router.post("/fornecedores/save", (req, res)=>{
     var nome = req.body.nome;
+    var tipo_documento = req.body.tipo_documento;
     var cpf = req.body.cpf;
     var cnpj = req.body.cnpj;
+    var inscricao_municipal = req.body.inscricao_municipal;
+    var inscricao_estadual = req.body.inscricao_estadual;
     var telefone1 = req.body.telefone1;
     var telefone2 = req.body.telefone2;
     var email = req.body.email;
@@ -21,8 +24,11 @@ router.post("/fornecedores/save", (req, res)=>{
     if(nome != undefined){
         Fornecedores.create({
             nome: nome,
+            tipo_documento: tipo_documento,
             cpf: cpf,
             cnpj: cnpj,
+            inscricao_municipal: inscricao_municipal,
+            inscricao_estadual: inscricao_estadual,
             telefone1: telefone1,
             telefone2: telefone2,
             email: email,
@@ -86,15 +92,18 @@ router.get("/fornecedores/edit/:id", adminAuth,(req, res)=>{
 router.post("/fornecedores/update", (req, res)=>{
     var id = req.body.id;
     var nome = req.body.nome;
+    var tipo_documento = req.body.tipo_documento;
     var cpf = req.body.cpf;
     var cnpj = req.body.cnpj;
+    var inscricao_municipal = req.body.inscricao_municipal;
+    var inscricao_estadual = req.body.inscricao_estadual;
     var telefone1 = req.body.telefone1;
     var telefone2 = req.body.telefone2;
     var email = req.body.email;
     var endereco = req.body.endereco;
     var numero = req.body.numero;
 
-    Fornecedores.update({nome: nome,cpf: cpf,cnpj: cnpj,telefone1: telefone1,telefone2: telefone2,email: email,endereco: endereco,numero: numero },{
+    Fornecedores.update({nome: nome, tipo_documento: tipo_documento,cpf: cpf,cnpj: cnpj,inscricao_municipal: inscricao_municipal,inscricao_estadual: inscricao_estadual,telefone1: telefone1,telefone2: telefone2,email: email,endereco: endereco,numero: numero },{
         where:{
             id:id
         }

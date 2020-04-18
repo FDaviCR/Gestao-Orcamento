@@ -6,6 +6,11 @@ html {
 body {
     min-height: 100%;
     background: turquoise;
+    margin-bottom: 5%;
+}
+
+h2 {
+    font-size:bold;
 }
 
 .loginBox{
@@ -61,5 +66,21 @@ body {
     background:rgba(0, 0, 0, .5);
 }
 
+.footerAll{
+    text-align:center;
+    color: rgb(255, 255, 255);
+    height: 5%;
+    width: 100%;
+    margin-top:30px;
+    background:rgba(0, 0, 0, .5);
+    position: fixed;
+    bottom:0;
+}
 
-
+.footerAll a:link, a:visited {
+    color: white;
+}
+  
+.footerAll a:link:active, a:visited:active {
+    color: red;
+}
