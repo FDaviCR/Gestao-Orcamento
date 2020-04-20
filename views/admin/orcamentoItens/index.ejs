@@ -7,7 +7,15 @@
     <hr>
     <h2>Itens do Orçamento</h2>
     <hr>
+    <div style="display: inline">
     <a class="btn btn-success" href="/orcamentoItens/new/<%= idOrcamento %>">Novo Item</a>
+        <br>
+        <br>
+    <form method="POST" action="/orcamentos/finalizar/<%= idOrcamento %>"">
+        <input type="hidden" readonly class="form-control" id="totalOrcamento" name="totalOrcamento">
+        <button class="btn btn-outline-success">Finalizar Orçamento</button>
+    </form>
+    </div>
 
     <hr>
     <table id="orcamento-item" class="table table-bordered">
@@ -42,7 +50,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Total do Orçamento</label>
             <div class="col-sm-10">
-                <input type="text" readonly class="form-control" id="totalOrcamento">
+                <input type="text" readonly class="form-control" id="totalOrcamentoTela">
             </div>
         </div>
     </form>
@@ -73,4 +81,5 @@
         
     }
     document.getElementById("totalOrcamento").value = parseFloat(getTotal(4)).toFixed(2);
+    document.getElementById("totalOrcamentoTela").value = parseFloat(getTotal(4)).toFixed(2);
 </script>

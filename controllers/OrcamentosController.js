@@ -5,6 +5,7 @@ const Orcamento = require("../models/Orcamentos");
 const Produto = require("../models/Produtos");
 const OrcamentoItens = require("../models/OrcamentoItens");
 const adminAuth = require("../middleware/adminAuth");
+let listaItens = [];
 
 
 router.get("/orcamentos", adminAuth, (req, res)=>{
@@ -93,5 +94,52 @@ router.post("/orcamentos/update", (req, res)=>{
     });
 });
 
+router.post("/orcamentos/finalizar/:id", (req, res)=>{
+    var id = req.params.id;
+    var valor = req.body.totalOrcamento;
+
+    console.log(id);
+    console.log(valor);
+
+    Orcamento.update({valor:valor},{
+        where:{
+            id: id
+        }
+    }).then(() => {
+        res.redirect("/orcamentos/visualizar/"+id);
+    }).catch(err => {
+        res.redirect("/");
+    });
+});
+
+
+/*
+router.get("/admin/orcamentos/new", adminAuth, (req, res)=>{
+    Cliente.findAll().then(clientes=>{
+        Produto.findAll().then(produtos=>{
+            res.render("admin/orcamentos/new_orc",{clientes: clientes, produtos: produtos});
+        })
+    })
+});
+
+router.post("/orcamentos/save", (req, res)=>{
+    var clienteId = req.body.cliente;
+    var tipo = req.body.tipo;
+    var formPagamento = req.body.formaPagamento;
+    var valor = 0;
+    var aprovado = 0;
+    
+    Orcamento.create({
+        clienteId: clienteId,
+        tipo:tipo,
+        formPagamento:formPagamento,
+        valor: valor,
+        aprovado:aprovado
+    }).then(()=>{
+        OrcamentoItens.bulkCreate(listaItens)
+        res.redirect("/orcamentos");
+    })
+});
+*/
 
 module.exports = router;

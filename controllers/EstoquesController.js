@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 const Estoques = require("../models/Estoques");
 const adminAuth = require("../middleware/adminAuth");
+const con = require("../database/database");
+
+
 
 
 router.get("/estoques/new", adminAuth, (req, res)=>{
@@ -14,14 +17,15 @@ router.post("/estoques/save", (req, res)=>{
     var status = req.body.status;
 	
     if(descricao != undefined){
-        Estoques.create({
-            descricao: descricao,
-            detalhes: detalhes,
-            status: status
+        con.query('INSERT INTO estoques (descricao,detalhes,status) VALUES (:descricao,:detalhes,:status)',{
+            replacements: {
+                descricao:descricao,detalhes:detalhes,status:status
+            },
+            type: con.QueryTypes.INSERT
+         
         }).then(()=>{
             res.redirect("/estoques");
         })
-        
     }else{
         res.redirect("admin/estoques/new");
     }

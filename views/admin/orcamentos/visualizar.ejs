@@ -61,10 +61,16 @@
     </form>
     <hr>
     <div>
-        <a href="/orcamentos/pdf/<%= orcamento.id %>" class="btn btn-outline-primary">Preparar Envio</a><br><br>
-        <form method="POST" action="/orcamentos/envioEmail">
+        <!--
+        <a href="/orcamentos/pdf/<%= orcamento.id %>" class="btn btn-outline-primary" type="hidden">Preparar Envio</a><br><br>
+        <form method="POST" action="/orcamentos/envioEmail" type="hidden">
             <input id="email" name="email" type="hidden" value="<%= orcamento.cliente.email %>">
             <button class="btn btn-outline-success">Enviar</button>
+        </form>
+        -->
+        <form method="POST" action="/orcamentos/pdfMail/<%= orcamento.id %>"">
+            <input id="email" name="email" type="hidden" value="<%= orcamento.cliente.email %>">
+            <button class="btn btn-outline-success">Enviar Orçamento</button>
         </form>
     </div>
     <hr>
@@ -86,5 +92,4 @@
         
     }
     document.getElementById("totalOrcamento").value = parseFloat(getTotal(4)).toFixed(2);
-    document.getElementById("")
 </script>

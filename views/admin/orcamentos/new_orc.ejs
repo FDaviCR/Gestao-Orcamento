@@ -1,0 +1,114 @@
+<%- include ('../../partials/header.ejs')%>
+<%- include ('../../partials/navbar.ejs')%>
+<br>
+<br>
+<hr>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2>Novo Orçamento</h2>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="/orcamentos/save">
+                <label>Cliente:</label>
+                <select name="cliente" class="form-control">
+                    <% clientes.forEach((cliente)=>{ %>
+                        <option value="<%= cliente.id %>"><%= cliente.nome %></option>
+                    <% }) %>
+                </select>
+                <label>Tipo:</label>
+                <select name="tipo" class="selector form-control">
+                    <option value="Compra">Compra</option>
+                    <option value="Venda">Venda</option>
+                </select>
+                <label>Forma de Pagamento:</label>
+                <select name="formaPagamento" class="selector form-control">
+                    <option value="Dinheiro">Dinheiro</option>
+                    <option value="Cartão de Credito">Cartão de Credito</option>
+                    <option value="Cartão de Debito">Cartão de Debito</option>
+                </select>
+            </form>
+
+            <h1 style="text-align: center">Itens do Orçamento</h1>
+
+            <form id="itens">
+                <label>Produto:</label>
+                <select id="produto" name="produto" class="form-control">
+                    <option value="0">Selecione um produto</option>>
+                    <% produtos.forEach((produto)=>{ %>
+                        <option value="<%= produto.id %>" data-valor="<%= produto.valor %>"><%= produto.produto%></option>
+                    <% }) %>
+                </select>
+                <label>Quantidade:</label>
+                <input class="form-control" type="number" id="quantidade" name="quantidade" placeholder="Defina uma quantidade" onblur="calcular()">
+                <label>Desconto:</label>
+                <select id="desconto" name="desconto" class="form-control">
+                    <option value="0">Selecione o desconto</option>
+                    <option value="1">Sem desconto</option>
+                    <option value="0.9">10% de desconto</option>
+                    <option value="0.8">20% de desconto</option>
+                </select>
+                <label>Valor Unitario:</label>
+                <input class="form-control" type="text" id="unitario" name="unitario" readonly>
+                <label>Valor Total:</label>
+                <input class="form-control" type="text" id="total" name="total" readonly><br>
+                <input class="form-control" type="text" id="data" name="data" readonly><br>
+                <button class="btn btn-primary">Cadastrar</button>
+            </form>
+
+            <div class="itens"></div>
+            
+        </div>
+    </div>
+</div>
+
+<%- include ('../../partials/footer.ejs')%></div>
+
+
+<script>
+    function calcular() {
+        var val = Number(document.getElementById("unitario").value);
+        var desc = Number(document.getElementById("desconto").value);
+	    var quant = Number(document.getElementById("quantidade").value);
+	    
+        document.getElementById("total").value = parseFloat(quant*(val*desc)).toFixed(2);
+        console.log(quant*val);
+    }
+    
+    $("#produto").change(function () {
+        var uni = ($(this).find(':selected').data('valor'));
+        document.getElementById("unitario").value = parseFloat(uni).toFixed(2);
+        calcular();
+    });
+
+    $("#desconto").change(function () {
+        calcular();
+    });
+
+    let lista = [];
+
+    $('#itens').submit(function() {
+
+        var produto= $('select[name=produto]').val();
+        var quantidade = $('input[name=quantidade]').val();
+        var desconto = $('select[name=desconto]').val();
+        var unitario = $('input[name=unitario]').val();
+        var total = $('input[name=total]').val();
+        
+        if(produto.length > 0 && quantidade.length > 0 && desconto.length > 0 ){
+            var itemObject = {
+                produto:produto,
+                quantidade:quantidade,
+                desconto:desconto,
+                unitario:unitario,
+                total:total
+            };
+            
+            lista.push(itemObject);
+            console.log(itemObject);
+        }
+        document.getElementById("itens").innerHTML = itemObject;
+        console.log(lista);
+        alert(lista);
+    });    
+</script>

@@ -92,8 +92,10 @@ router.get("/orcamentos/visualizar/:id",  adminAuth, (req, res)=>{
 router.post("/orcamentos/envioEmail",  adminAuth, (req, res)=>{
     var email = req.body.email;
     var orcamento = req.body.orcamentoCompleto;
+
     console.log(email);
     console.log(orcamento);
+
     if(email != undefined){
         var EmailEnvio = require('../function/Email'),
         envio = new EmailEnvio(email,orcamento);
@@ -106,6 +108,54 @@ router.post("/orcamentos/envioEmail",  adminAuth, (req, res)=>{
 
 router.get("/orcamentos/pdf/:id", (req, res)=>{
     var id = req.params.id;
+    
+    Orcamento.findByPk(id, {include:[{model:Cliente}]}).then(orcamento=>{
+        if(orcamento != undefined){
+            OrcamentoItens.findAll({
+                where:{ orcamentoId: id},
+                include: [{model: Produto}]
+            }).then(orcamentoItens=>{
+                ejs.renderFile(path.join(__dirname, './views/', "template.ejs"), {orcamentoItens:orcamentoItens,orcamento:orcamento}, (err, data) => {
+                    if (err) {
+                        res.send(err);
+                    } else {
+                        let options = {
+                            "height": "11.25in",
+                            "width": "8.5in",
+                            "header": {
+                                "height": "20mm"
+                            },
+                            "footer": {
+                                "height": "20mm",
+                            },
+                        };
+                        pdf.create(data, options).toFile("report.pdf", function (err, data) {
+                            if (err) {
+                                console.log(err);
+                                res.redirect("/orcamentos/visualizar/"+id);
+                            } else {
+                                res.redirect("/orcamentos/visualizar/"+id);
+                            }
+                        });
+                    }
+                });
+            });
+        }else{
+            res.redirect("/orcamentos");
+        }
+    }).catch(err=>{
+        console.log(err);
+        res.redirect("/");
+    });
+});
+
+router.post("/orcamentos/pdfMail/:id", (req, res)=>{
+    var id = req.params.id;
+    var email = req.body.email;
+    var orc = req.body.orcamentoCompleto;
+
+    console.log(email);
+    console.log(orc);
     
     Orcamento.findByPk(id, {include:[{model:Cliente}]}).then(orcamento=>{
         if(orcamento != undefined){
@@ -131,7 +181,11 @@ router.get("/orcamentos/pdf/:id", (req, res)=>{
                             if (err) {
                                 res.redirect("/orcamentos/visualizar/"+id);
                             } else {
-                                res.redirect("/orcamentos/visualizar/"+id);
+                                if(email != undefined){
+                                    var EmailEnvio = require('../function/Email'),
+                                    envio = new EmailEnvio(email,orc);
+                                }
+                                res.redirect("/orcamentos/visualizar/"+id);                         
                             }
                         });
                     }
@@ -145,6 +199,7 @@ router.get("/orcamentos/pdf/:id", (req, res)=>{
         res.redirect("/");
     });
 });
+
 
 module.exports = router;
 

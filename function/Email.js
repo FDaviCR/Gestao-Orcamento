@@ -1,13 +1,13 @@
 const nodemailer = require("nodemailer");
 
-
+//Configurado para Gmail
 let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
     secure: false,
     auth: {
-        user: "davi.jonin@gmail.com",
-        pass: "Shinobiwar"
+        user: "davi.jonin@gmail.com", //Adicionar endereço de  email
+        pass: "Shinobiwar"              //Adicionar senha do email
     }
 });
 
@@ -16,7 +16,7 @@ module.exports = function Email(destinatario, orcamento){
     this.orcamento = orcamento;
 
     transporter.sendMail({
-        from: "davi.jonin@gmail.com",
+        from: "davi.jonin@gmail.com", //Adicionar endereço de  email
         to: destinatario,
         subject: "Orçamento Teste Aptum",
         text: "Olá! Seu orçamento segue em anexo!",
