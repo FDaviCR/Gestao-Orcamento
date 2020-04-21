@@ -1,7 +1,17 @@
 const Sequelize = require('sequelize');
 
 const connection = new Sequelize(
-    'aptumgst','root','',
+    'aptumgst','fdavi','senhaatual',
+    {
+        host: 'mysql669.umbler.com',
+        dialect: 'mysql',
+        timezone: "-03:00"
+    }
+);
+
+/*
+const connection = new Sequelize(
+    'aptumgst','root','12345',
     {
         host: 'localhost',
         dialect: 'mysql',
@@ -9,7 +19,7 @@ const connection = new Sequelize(
     }
 );
 
-/*
+
 const connection = new Sequelize(
     'teste','postgres','shinobiwar',
 {
