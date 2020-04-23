@@ -168,8 +168,10 @@ router.post("/orcamentos/pdfMail/:id", (req, res)=>{
                           res.send(err);
                     } else {
                         let options = {
-                            "height": "11.25in",
-                            "width": "8.5in",
+                            "format": "A5",        // allowed units: A3, A4, A5, Legal, Letter, Tabloid
+                            "orientation": "portrait",
+                            //"height": "21cm",//"11.25in",
+                            //"width": "14.8cm",//"8.5in",
                             "header": {
                                 "height": "20mm"
                             },
