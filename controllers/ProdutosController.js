@@ -22,7 +22,8 @@ router.post("/produtos/save", (req, res)=>{
             valor: valor,
             custo: custo,
             unidade: unidade,
-            usuario: req.session.usuario
+            usuario: req.session.usuario,
+            ativo: true
         }).then(()=>{
             res.redirect("/produtos");
         })
@@ -33,7 +34,9 @@ router.post("/produtos/save", (req, res)=>{
 });
 
 router.get("/produtos", adminAuth,(req, res)=>{
-    Produtos.findAll().then(produtos =>{
+    Produtos.findAll({
+        where: {ativo: true}
+    }).then(produtos =>{
         res.render("admin/produtos/index", {produtos:produtos});
     });
 });
@@ -42,7 +45,7 @@ router.post("/produtos/delete", (req, res)=>{
     var id = req.body.id;
     if(id != undefined){
         if(!isNaN(id)){
-            Produtos.destroy({
+            Produtos.update({ativo:false },{
                 where:{
                     id:id
                 }

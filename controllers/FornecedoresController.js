@@ -33,7 +33,8 @@ router.post("/fornecedores/save", (req, res)=>{
             telefone2: telefone2,
             email: email,
             endereco: endereco,
-            numero: numero
+            numero: numero,
+            ativo: true
         }).then(()=>{
             res.redirect("/fornecedores");
         })
@@ -44,7 +45,9 @@ router.post("/fornecedores/save", (req, res)=>{
 });
 
 router.get("/fornecedores", adminAuth,(req, res)=>{
-    Fornecedores.findAll().then(fornecedores =>{
+    Fornecedores.findAll({
+        where: {ativo: true}
+    }).then(fornecedores =>{
         res.render("admin/fornecedores/index", {fornecedores:fornecedores});
     });
 });
@@ -53,7 +56,7 @@ router.post("/fornecedores/delete", (req, res)=>{
     var id = req.body.id;
     if(id != undefined){
         if(!isNaN(id)){
-            Fornecedores.destroy({
+            Fornecedores.update({ativo: false} ,{
                 where:{
                     id:id
                 }

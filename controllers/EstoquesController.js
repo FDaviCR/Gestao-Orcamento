@@ -5,8 +5,6 @@ const adminAuth = require("../middleware/adminAuth");
 const con = require("../database/database");
 
 
-
-
 router.get("/estoques/new", adminAuth, (req, res)=>{
     res.render("admin/estoques/new");
 });

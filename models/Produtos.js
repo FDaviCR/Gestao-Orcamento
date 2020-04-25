@@ -22,6 +22,10 @@ const Produto = connection.define('produtos',{
     usuario:{
         type: Sequelize.STRING,
         allowNull: false
+    },
+    ativo:{
+        type: Sequelize.BOOLEAN,
+        allowNull: false
     }
 })
 

@@ -34,6 +34,10 @@ const Cliente = connection.define('clientes',{
     numero:{
         type: Sequelize.STRING,
         allowNull: false
+    },
+    ativo:{
+        type: Sequelize.BOOLEAN,
+        allowNull: false
     }
 })
 

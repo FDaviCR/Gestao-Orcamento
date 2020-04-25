@@ -10,6 +10,7 @@ let listaItens = [];
 
 router.get("/orcamentos", adminAuth, (req, res)=>{
     Orcamento.findAll({
+        where:{ativo: true},
         include: [{model: Cliente}]
     }).then(orcamentos=>{
         res.render("admin/orcamentos/index",{orcamentos:orcamentos});
@@ -34,17 +35,18 @@ router.post("/orcamentos/save", (req, res)=>{
         tipo:tipo,
         formPagamento:formPagamento,
         valor: valor,
-        aprovado:aprovado
-    }).then(()=>{
-        res.redirect("/orcamentos");
-    })
+        aprovado:aprovado,
+        ativo:true
+    }).then(function(x){
+        res.redirect("/orcamentoItens/new/"+x.id);
+    });
 });
 
 router.post("/orcamentos/delete", (req, res)=>{
     var id = req.body.id;
     if(id != undefined){
         if(!isNaN(id)){
-            Orcamento.destroy({
+            Orcamento.update({ativo:false },{
                 where:{
                     id:id
                 }

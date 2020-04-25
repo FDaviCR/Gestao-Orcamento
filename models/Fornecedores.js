@@ -46,6 +46,10 @@ const Fornecedor = connection.define('fornecedores',{
     numero:{
         type: Sequelize.STRING,
         allowNull: false
+    },
+    ativo:{
+        type: Sequelize.BOOLEAN,
+        allowNull: false
     }
 })
 

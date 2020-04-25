@@ -19,6 +19,10 @@ const Orcamento = connection.define('orcamentos',{
     aprovado:{
         type: Sequelize.BOOLEAN,
         allowNull: false
+    },
+    ativo:{
+        type: Sequelize.BOOLEAN,
+        allowNull: false
     }
 })
 

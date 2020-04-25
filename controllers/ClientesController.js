@@ -27,7 +27,8 @@ router.post("/clientes/save", (req, res)=>{
             telefone2: telefone2,
             email: email,
             endereco: endereco,
-            numero: numero
+            numero: numero,
+            ativo: true
         }).then(()=>{
             res.redirect("/clientes");
         })
@@ -40,7 +41,9 @@ router.post("/clientes/save", (req, res)=>{
 router.get("/clientes", adminAuth,(req, res)=>{
     //var GeradorPDF = require('../../function/GeradorPDF'),
     //envio = new GeradorPDF();
-    Clientes.findAll().then(clientes =>{
+    Clientes.findAll({
+        where: {ativo:true}
+    }).then(clientes =>{
         res.render("admin/clientes/index", {clientes:clientes});
     });
 });
@@ -49,7 +52,7 @@ router.post("/clientes/delete", (req, res)=>{
     var id = req.body.id;
     if(id != undefined){
         if(!isNaN(id)){
-            Clientes.destroy({
+            Clientes.update({ativo: false},{
                 where:{
                     id:id
                 }
