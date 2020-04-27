@@ -16,6 +16,10 @@ const EstoqueItens = connection.define('estoqueitens',{
     unidade:{
         type: Sequelize.STRING,
         allowNull: false
+    },
+    usuario:{
+        type: Sequelize.STRING,
+        allowNull: false
     }
 })
 

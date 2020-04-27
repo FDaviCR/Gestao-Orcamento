@@ -50,6 +50,10 @@ const Fornecedor = connection.define('fornecedores',{
     ativo:{
         type: Sequelize.BOOLEAN,
         allowNull: false
+    },
+    usuario:{
+        type: Sequelize.STRING,
+        allowNull: false
     }
 })
 

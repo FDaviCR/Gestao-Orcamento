@@ -23,6 +23,10 @@ const Orcamento = connection.define('orcamentos',{
     ativo:{
         type: Sequelize.BOOLEAN,
         allowNull: false
+    },
+    usuario:{
+        type: Sequelize.STRING,
+        allowNull: false
     }
 })
 

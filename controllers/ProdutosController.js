@@ -45,7 +45,7 @@ router.post("/produtos/delete", (req, res)=>{
     var id = req.body.id;
     if(id != undefined){
         if(!isNaN(id)){
-            Produtos.update({ativo:false },{
+            Produtos.update({ativo:false,usuario: req.session.usuario},{
                 where:{
                     id:id
                 }

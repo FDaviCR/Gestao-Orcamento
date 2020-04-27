@@ -36,7 +36,8 @@ router.post("/orcamentos/save", (req, res)=>{
         formPagamento:formPagamento,
         valor: valor,
         aprovado:aprovado,
-        ativo:true
+        ativo:true,
+        usuario: req.session.usuario
     }).then(function(x){
         res.redirect("/orcamentoItens/new/"+x.id);
     });
@@ -46,7 +47,7 @@ router.post("/orcamentos/delete", (req, res)=>{
     var id = req.body.id;
     if(id != undefined){
         if(!isNaN(id)){
-            Orcamento.update({ativo:false },{
+            Orcamento.update({ativo:false,usuario: req.session.usuario},{
                 where:{
                     id:id
                 }
@@ -85,7 +86,7 @@ router.post("/orcamentos/update", (req, res)=>{
     var tipo = req.body.tipo;
     var formPagamento = req.body.formaPagamento;
 
-    Orcamento.update({clienteId:clienteId, tipo:tipo, formPagamento: formPagamento},{
+    Orcamento.update({clienteId:clienteId, tipo:tipo, formPagamento: formPagamento, usuario: req.session.usuario},{
         where:{
             id: id
         }

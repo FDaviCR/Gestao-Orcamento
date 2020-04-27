@@ -35,7 +35,8 @@ router.post("/estoqueItens/save", (req, res)=>{
         unidade:unidade,
         apelido:apelido,
         estoqueId:estoqueId,
-        produtoId:produtoId
+        produtoId:produtoId,
+        usuario: req.session.usuario
     }).then(()=>{
         res.redirect("/estoqueItens/"+estoqueId);
     })

@@ -15,9 +15,9 @@ router.post("/estoques/save", (req, res)=>{
     var status = req.body.status;
 	
     if(descricao != undefined){
-        con.query('INSERT INTO estoques (descricao,detalhes,status) VALUES (:descricao,:detalhes,:status)',{
+        con.query('INSERT INTO estoques (descricao,detalhes,status,usuario) VALUES (:descricao,:detalhes,:status,:usuario)',{
             replacements: {
-                descricao:descricao,detalhes:detalhes,status:status
+                descricao:descricao,detalhes:detalhes,status:status,usuario: req.session.usuario
             },
             type: con.QueryTypes.INSERT
          
@@ -59,7 +59,7 @@ router.post("/estoques/update", (req, res)=>{
     var detalhes = req.body.detalhes;
     var status = req.body.status;
 
-    Estoques.update({descricao:descricao, detalhes:detalhes, status:status},{
+    Estoques.update({descricao:descricao, detalhes:detalhes, status:status, usuario: req.session.usuario},{
         where:{
             id:id
         }

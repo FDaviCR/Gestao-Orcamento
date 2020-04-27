@@ -16,6 +16,10 @@ const OrcamentoItens = connection.define('orcamentoitens',{
     valorTotal:{
         type: Sequelize.DECIMAL(18,2),
         allowNull: false
+    },
+    usuario:{
+        type: Sequelize.STRING,
+        allowNull: false
     }
 })
 

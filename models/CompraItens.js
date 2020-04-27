@@ -17,6 +17,10 @@ const CompraItens = connection.define('compraitens',{
     unidade:{
         type: Sequelize.STRING,
         allowNull: false
+    },
+    usuario:{
+        type: Sequelize.STRING,
+        allowNull: false
     }
 })
 

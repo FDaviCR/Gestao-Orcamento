@@ -43,7 +43,8 @@ router.post("/compraItens/save", (req, res)=>{
         valor:valor,
         unidade:unidade,
         compraId:compraId,
-        produtoId:produtoId
+        produtoId:produtoId,
+        usuario: req.session.usuario
     }).then(()=>{
         EstoqueMovimentacoes.create({
             quantidade: quantidade,
@@ -54,7 +55,7 @@ router.post("/compraItens/save", (req, res)=>{
             usuario: req.session.usuario
         }).then(()=>{
             EstoqueItens.update(
-                {quantidade: atualizado},
+                {quantidade: atualizado, usuario: req.session.usuario},
                 {where:{id:estoqueItemId}
             }).then(()=>{
                 res.redirect("/compraItens/"+compraId);

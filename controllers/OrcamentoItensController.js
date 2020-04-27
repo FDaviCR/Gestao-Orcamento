@@ -40,7 +40,8 @@ router.post("/orcamentoItens/save", (req, res)=>{
         valorUnitario:valorUnitario,
         valorTotal:valorTotal,
         orcamentoId:orcamentoId,
-        produtoId:produtoId
+        produtoId:produtoId,
+        usuario: req.session.usuario
     }).then(()=>{
         res.redirect("/orcamentoItens/"+orcamentoId);
     })
@@ -168,10 +169,8 @@ router.post("/orcamentos/pdfMail/:id", (req, res)=>{
                           res.send(err);
                     } else {
                         let options = {
-                            "format": "A5",        // allowed units: A3, A4, A5, Legal, Letter, Tabloid
+                            "format": "A5",        
                             "orientation": "portrait",
-                            //"height": "21cm",//"11.25in",
-                            //"width": "14.8cm",//"8.5in",
                             "header": {
                                 "height": "20mm"
                             },

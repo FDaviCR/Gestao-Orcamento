@@ -34,7 +34,8 @@ router.post("/fornecedores/save", (req, res)=>{
             email: email,
             endereco: endereco,
             numero: numero,
-            ativo: true
+            ativo: true,
+            usuario: req.session.usuario
         }).then(()=>{
             res.redirect("/fornecedores");
         })
@@ -56,7 +57,7 @@ router.post("/fornecedores/delete", (req, res)=>{
     var id = req.body.id;
     if(id != undefined){
         if(!isNaN(id)){
-            Fornecedores.update({ativo: false} ,{
+            Fornecedores.update({ativo: false,usuario: req.session.usuario} ,{
                 where:{
                     id:id
                 }
@@ -106,7 +107,7 @@ router.post("/fornecedores/update", (req, res)=>{
     var endereco = req.body.endereco;
     var numero = req.body.numero;
 
-    Fornecedores.update({nome: nome, tipo_documento: tipo_documento,cpf: cpf,cnpj: cnpj,inscricao_municipal: inscricao_municipal,inscricao_estadual: inscricao_estadual,telefone1: telefone1,telefone2: telefone2,email: email,endereco: endereco,numero: numero },{
+    Fornecedores.update({nome: nome, tipo_documento: tipo_documento,cpf: cpf,cnpj: cnpj,inscricao_municipal: inscricao_municipal,inscricao_estadual: inscricao_estadual,telefone1: telefone1,telefone2: telefone2,email: email,endereco: endereco,numero: numero,usuario: req.session.usuario},{
         where:{
             id:id
         }

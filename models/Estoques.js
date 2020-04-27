@@ -14,6 +14,10 @@ const Estoque = connection.define('estoques',{
     status:{
         type: Sequelize.STRING,
         allowNull: false
+    },
+    usuario:{
+        type: Sequelize.STRING,
+        allowNull: false
     }
 })
 

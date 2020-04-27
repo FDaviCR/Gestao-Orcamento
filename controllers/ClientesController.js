@@ -28,7 +28,8 @@ router.post("/clientes/save", (req, res)=>{
             email: email,
             endereco: endereco,
             numero: numero,
-            ativo: true
+            ativo: true,
+            usuario: req.session.usuario
         }).then(()=>{
             res.redirect("/clientes");
         })
@@ -52,7 +53,7 @@ router.post("/clientes/delete", (req, res)=>{
     var id = req.body.id;
     if(id != undefined){
         if(!isNaN(id)){
-            Clientes.update({ativo: false},{
+            Clientes.update({ativo: false,usuario: req.session.usuario},{
                 where:{
                     id:id
                 }
@@ -99,7 +100,7 @@ router.post("/clientes/update", (req, res)=>{
     var endereco = req.body.endereco;
     var numero = req.body.numero;
 
-    Clientes.update({nome: nome,cpf: cpf,cnpj: cnpj,telefone1: telefone1,telefone2: telefone2,email: email,endereco: endereco,numero: numero },{
+    Clientes.update({nome: nome,cpf: cpf,cnpj: cnpj,telefone1: telefone1,telefone2: telefone2,email: email,endereco: endereco,numero: numero,usuario: req.session.usuario},{
         where:{
             id:id
         }
