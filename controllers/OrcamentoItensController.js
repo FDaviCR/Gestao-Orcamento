@@ -186,6 +186,7 @@ router.post("/orcamentos/pdfMail/:id", (req, res)=>{
                                     var EmailEnvio = require('../function/Email'),
                                     envio = new EmailEnvio(email,orc);
                                 }
+                                console.log("Enviado!");
                                 res.redirect("/orcamentos/visualizar/"+id);                         
                             }
                         });
