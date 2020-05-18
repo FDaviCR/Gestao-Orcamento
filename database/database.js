@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
 const connection = new Sequelize(
-    'aptumgst','root','',
+    'aptumgst','root','soeusei',
     {
         host: 'localhost',
         dialect: 'mysql',
@@ -10,7 +10,7 @@ const connection = new Sequelize(
 );
 
 /*
-const connection = new Sequelize(
+const connection new Sequelize(
     'teste','postgres','shinobiwar',
 {
     host: 'localhost',

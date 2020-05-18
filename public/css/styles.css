@@ -5,7 +5,7 @@ html {
 }
 body {
     min-height: 100%;
-    background: turquoise;
+    background: #33c4c9;
 }
 
 .loginBox{
@@ -53,12 +53,21 @@ body {
     font-weight: bold;
 }
 
+.menuBox{
+    background:rgba(0, 0, 0, .5);
+}
+
 .cardBody{
     background:rgba(0, 0, 0, .5);
 }
 
-.menuBox{
-    background:rgba(0, 0, 0, .5);
+.form-control {
+    flex-direction: row;
+    display: inline-block;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
 }
 
 

@@ -1,0 +1,83 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.menu body {
+  background-image: none;
+}
+
+.menu {
+  position: fixed;
+  width: 100%;
+  height: 50px;
+  background-color: #355C7D;
+  font-family: 'Arial';
+  font-weight: bold;
+  align-self: center;
+}
+
+.menu ul {
+  list-style: none;
+  position: relative;
+  color: #ffffff;
+}
+
+.menu ul li {
+  width: 150px;
+  float: left;
+  background-color: #355C7D;
+}
+
+.menu a {
+  padding: 17px;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  color: #ffffff;
+}
+
+.menu a:hover {
+  background-color: rgb(13, 156, 228);
+  transition-duration: 0.6s;
+}
+
+label[for="botao-menu"] {
+  padding: 0;
+  background-color: #355C7D;
+  color: #fff;
+  font-family: 'Arial';
+  text-align: center;
+  font-size: 30px;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: none;
+}
+
+@media(max-width: 800px) {
+
+  label[for="botao-menu"] {
+    display: block;
+  }
+
+  #botao-menu:checked ~ .menu {
+    margin-left: 0;
+  }
+
+  .menu {
+    margin-top: 5px;
+    margin-left: -100%;
+    transition: all 0.6s;
+  }
+
+  .menu ul li {
+    width: 100%;
+    float: none;
+  }
+
+}
+
+#botao-menu {
+  display: none;
+}
