@@ -13,6 +13,10 @@ const User = connection.define('users',{
     usuario:{
         type: Sequelize.STRING,
         allowNull: true
+    },
+    ativo:{
+        type: Sequelize.BOOLEAN,
+        allowNull: false
     }
 })
 

@@ -43,23 +43,12 @@ module.exports = {
         if(isNaN(id)){
             return res.status(400).json({msg:'Usuário não existe!!'});
         }else{
-            User.destroy({
+            await User.destroy({
                 where:{
                     id:id
                 }
             })
             return res.status(204).json({msg:'Usuário deletado com sucesso!'});
         }
-    },
-
-    async listOne(req, res) {
-        const id = req.params.id;
-        const user = await User.findOne({
-            where:{
-                id:id
-            }
-        });  
-        return res.status(200).json(user);
     }
-
 }
