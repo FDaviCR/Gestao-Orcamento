@@ -5,12 +5,16 @@ html {
 }
 body {
     min-height: 100%;
+<<<<<<< HEAD
     background:  turquoise; /*rgb(58, 58, 110);*/
     margin-bottom: 5%;
 }
 
 h2 {
     font-size:bold;
+=======
+    background: #33c4c9;
+>>>>>>> front-end
 }
 
 .loginBox{
@@ -58,14 +62,15 @@ h2 {
     font-weight: bold;
 }
 
-.cardBody{
-    background:rgba(0, 0, 0, .5);
-}
-
 .menuBox{
     background:rgba(0, 0, 0, .5);
 }
 
+.cardBody{
+    background:rgba(0, 0, 0, .5);
+}
+
+<<<<<<< HEAD
 .footerAll{
     text-align:center;
     color: rgb(255, 255, 255);
@@ -76,6 +81,17 @@ h2 {
     position: fixed;
     bottom:0;
 }
+=======
+.form-control {
+    flex-direction: row;
+    display: inline-block;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+>>>>>>> front-end
 
 .footerAll a:link, a:visited {
     color: white;

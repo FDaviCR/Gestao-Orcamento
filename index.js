@@ -4,7 +4,7 @@ const app = express();
 const bodyParser = require("body-parser"); //Importando Body Parser
 const connection = require("./database/database");
 const adminAuth = require("./middleware/adminAuth");
-
+/*
 const usersController = require("./controllers/UsersController");
 const produtosController = require("./controllers/ProdutosController");
 const clientesController = require("./controllers/ClientesController");
@@ -79,5 +79,5 @@ app.listen(3000, () => {
     console.log("O servidor está rodando!")
 })
 
-
+*/
 
