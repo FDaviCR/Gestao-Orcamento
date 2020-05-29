@@ -8,19 +8,19 @@ const Cliente = connection.define('clientes',{
     },
     cpf:{
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     cnpj:{
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     telefone1:{
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     telefone2:{
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     email:{
         type: Sequelize.STRING,
@@ -28,11 +28,11 @@ const Cliente = connection.define('clientes',{
     },
     endereco:{
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     numero:{
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     ativo:{
         type: Sequelize.BOOLEAN,

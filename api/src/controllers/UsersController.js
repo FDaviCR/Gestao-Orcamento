@@ -1,4 +1,3 @@
-const connection = require("../../database/database");
 const User = require("../models/Usuarios");
 const bcrypt = require('bcryptjs');
 
@@ -19,7 +18,7 @@ module.exports = {
                 });
                 const response = {
                     status: 200,
-                    mensagem: 'Produto inserido com sucesso!'};
+                    mensagem: 'Usuário inserido com sucesso!'};
                 return res.send(response);
                 
             }else{
