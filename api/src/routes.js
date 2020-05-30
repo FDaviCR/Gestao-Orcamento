@@ -9,6 +9,8 @@ const ProductController = require("./controllers/ProductController");
 const ProductsController = require("./controllers/ProductsController");
 const ProviderController = require("./controllers/ProviderController");
 const ProvidersController = require("./controllers/ProvidersController");
+const BudgetController = require("./controllers/BudgetController");
+const BudgetsController = require("./controllers/BudgetsController");
 
 routes.get('/user/:id', UserController.list);
 routes.put('/user/:id', UserController.inactivate);
@@ -41,5 +43,12 @@ routes.get('/providers', ProvidersController.list);
 routes.delete('/providers/:id', ProvidersController.delete);
 routes.put('/providers/:id', ProvidersController.edit);
 
+routes.get('/budget/:id', BudgetController.list);
+routes.put('/budget/:id', BudgetController.inactivate);
+
+routes.post('/budgets', BudgetsController.create);
+routes.get('/budgets', BudgetsController.list);
+routes.delete('/budgets/:id', BudgetsController.delete);
+routes.put('/budgets/:id', BudgetsController.edit);
 
 module.exports = routes;
