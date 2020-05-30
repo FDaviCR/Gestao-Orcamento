@@ -11,6 +11,8 @@ const ProviderController = require("./controllers/ProviderController");
 const ProvidersController = require("./controllers/ProvidersController");
 const BudgetController = require("./controllers/BudgetController");
 const BudgetsController = require("./controllers/BudgetsController");
+const BudgetItemController = require("./controllers/BudgetItemController");
+const BudgetItemsController = require("./controllers/BudgetItemsController");
 
 routes.get('/user/:id', UserController.list);
 routes.put('/user/:id', UserController.inactivate);
@@ -50,5 +52,12 @@ routes.post('/budgets', BudgetsController.create);
 routes.get('/budgets', BudgetsController.list);
 routes.delete('/budgets/:id', BudgetsController.delete);
 routes.put('/budgets/:id', BudgetsController.edit);
+
+routes.get('/budgetItem/:id', BudgetItemController.list);
+
+routes.post('/budgetItems', BudgetItemsController.create);
+routes.get('/budgetItems', BudgetItemsController.list);
+routes.delete('/budgetItems/:id', BudgetItemsController.delete);
+routes.put('/budgetItems/:id', BudgetItemsController.edit);
 
 module.exports = routes;
