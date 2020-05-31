@@ -1,6 +1,7 @@
 const express = require("express");
 const routes = express.Router();
 
+const SessionController = require("./controllers/SessionController");
 const UserController = require("./controllers/UserController");
 const UsersController = require("./controllers/UsersController");
 const ClientController = require("./controllers/ClientController");
@@ -13,6 +14,9 @@ const BudgetController = require("./controllers/BudgetController");
 const BudgetsController = require("./controllers/BudgetsController");
 const BudgetItemController = require("./controllers/BudgetItemController");
 const BudgetItemsController = require("./controllers/BudgetItemsController");
+
+
+routes.post('/session', SessionController.create);
 
 routes.get('/user/:id', UserController.list);
 routes.put('/user/:id', UserController.inactivate);

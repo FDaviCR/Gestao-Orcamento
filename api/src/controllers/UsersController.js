@@ -14,6 +14,7 @@ module.exports = {
                 await User.create({
                     login: body.login,
                     password: hash,
+                    ativo:true,
                     usuario: 'Teste de API'//req.session.usuario
                 });
                 const response = {
