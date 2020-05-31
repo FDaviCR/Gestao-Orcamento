@@ -1,8 +1,10 @@
 body {
   margin: 0;
   padding: 0;
+  height: 100vh;
   background-image: url(../../assets/background-login.jpg);
   background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .logon-container {
@@ -40,6 +42,7 @@ body {
   color: #fff;
 }
 
+/* NAO USAR
 /* .form-logon p {
   margin: 0;
   padding: 0;
@@ -59,7 +62,9 @@ body {
   outline: none;
   height: 40px;
   color: white;
-} */
+} 
+NAO USAR ACABA AQUI */
+
 
 .form-logon input[type="text"], input[type="password"] {
   width: 100%;

@@ -15,27 +15,25 @@ export default function Logon() {
     e.preventDefault();
 
     // try {
-    //   const response = await api.post('authenticate', { login });
-
+    //   const response = await api.post('authenticate', { login })
     //   localStorage.setItem('loginId', login);
-    //   localStorage.setItem('loginName', response.data.login);
-
+    //   localStorage.setItem('loginName', response.data.login)
       history.push('/menu')
     // } catch (err) {
     //   alert('Falha no login.');
     // }
-
   }
 
   return (
     <div className="logon-container">
       <section>
         <img src={LogoUser} className="logon-img" width="100" height="100" alt="User" />
+
         <h1>IMPRESSO.COM</h1>
         <form className="form-logon" onSubmit={handleLogin}>
 
           <div className="dados-logon">
-            <input 
+            <input
               type="text" required
               value={login}
               onChange={e => setLogin(e.target.value)}
@@ -44,7 +42,7 @@ export default function Logon() {
           </div>
 
           <div className="dados-logon">
-            <input 
+            <input
               type="password" required
               value={password}
               onChange={e => setPassword(e.target.value)}
@@ -53,7 +51,7 @@ export default function Logon() {
           </div>
 
           <button className="btn-login" type="submit">Login</button>
-          <footer className="empresa">Vestra Tecnologia</footer>
+          {/* <footer className="empresa">Vestra Tecnologia</footer> */}
         </form>
       </section>
     </div>

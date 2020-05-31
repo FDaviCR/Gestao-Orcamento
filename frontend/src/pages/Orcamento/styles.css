@@ -1,0 +1,19 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  background-color: #355C7D;
+}
+
+.orc-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: #041B2D;
+  color: #FFF;
+  font-family: 'Arial';
+  font-weight: bold;
+  align-self: center;
+}

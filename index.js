@@ -74,7 +74,7 @@ app.get("/", adminAuth, (req, res) => {
 })
 
 // End Router
-app.listen(3000, () => {
+app.listen(5000, () => {
     console.log("O servidor está rodando!")
 })
 

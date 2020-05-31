@@ -1,12 +1,13 @@
 import React from 'react';
 import './styles.css'
+import Orcamento from '../Orcamento/index'
 
 export default function Menu() {
   return (
-    <div>
+    <div className="menu">
       <input type="checkbox" id="botao-menu" />
       <label for="botao-menu">&#9776;</label>
-      <nav className="menu">
+      <nav>
         <ul>
           <li><a href="/financeiro">Financeiro</a></li>
           <li><a href="/orcamentos">Orçamentos</a></li>

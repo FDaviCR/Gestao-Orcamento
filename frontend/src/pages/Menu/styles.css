@@ -3,15 +3,15 @@
   padding: 0px;
 }
 
-.menu body {
-  background-image: none;
+body {
+  background-color: #355C7D;
 }
 
 .menu {
   position: fixed;
   width: 100%;
-  height: 50px;
-  background-color: #355C7D;
+  height: 100%;
+  background-color: #041B2D;
   font-family: 'Arial';
   font-weight: bold;
   align-self: center;
@@ -26,7 +26,7 @@
 .menu ul li {
   width: 150px;
   float: left;
-  background-color: #355C7D;
+  background-color: #041B2D;
 }
 
 .menu a {

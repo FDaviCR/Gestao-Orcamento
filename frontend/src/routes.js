@@ -23,8 +23,8 @@ export default function Routes() {
       <Switch>
         <Route path="/" exact component={Logon}/>
         <Route path="/menu" component={Menu}/>
-        {/* <Route path="/" component={}/>-
-        <Route path="/" component={}/>
+        <Route path="/orcamentos" component={Orcamento}/>-
+        {/* <Route path="/" component={}/>
         <Route path="/" component={}/>
         <Route path="/" component={}/>
         <Route path="/" component={}/>
