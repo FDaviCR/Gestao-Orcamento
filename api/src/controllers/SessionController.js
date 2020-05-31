@@ -1,5 +1,7 @@
 const User = require("../models/Usuarios");
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const JWTSecret = "YouShallNotPass";
 
 module.exports = {
     async create(req, res) {
@@ -10,7 +12,14 @@ module.exports = {
                 var correct = bcrypt.compareSync(body.password, user.password);
     
                 if(correct){
-                    res.status(200).json({msg: "Acesso permitido!"})
+                    jwt.sign({id: user.id, login: user.login},JWTSecret,{expiresIn:'3m'},(err, token) =>{
+                        if(err){
+                            res.status(400);
+                            res.json({err:"Falha interna!"});
+                        }else{
+                            res.status(200).json({msg: token})
+                        }
+                    })
                 }else{
                     res.status(401).json({msg: "Senha incorreta!"})
                 }

@@ -1,5 +1,6 @@
 const express = require("express");
 const routes = express.Router();
+const auth = require("./middleware/auth");
 
 const SessionController = require("./controllers/SessionController");
 const UserController = require("./controllers/UserController");
@@ -37,7 +38,7 @@ routes.get('/product/:id', ProductController.list);
 routes.put('/product/:id', ProductController.inactivate);
 
 routes.post('/products', ProductsController.create);
-routes.get('/products', ProductsController.list);
+routes.get('/products', auth, ProductsController.list);
 routes.delete('/products/:id', ProductsController.delete);
 routes.put('/products/:id', ProductsController.edit);
 
