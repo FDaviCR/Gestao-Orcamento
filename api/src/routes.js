@@ -19,50 +19,50 @@ const BudgetItemsController = require("./controllers/BudgetItemsController");
 
 routes.post('/session', SessionController.create);
 
-routes.get('/user/:id', UserController.list);
-routes.put('/user/:id', UserController.inactivate);
+routes.get('/user/:id', auth, UserController.list);
+routes.put('/user/:id', auth, UserController.inactivate);
 
-routes.get('/users', UsersController.list);
-routes.post('/users', UsersController.create);
-routes.delete('/users/:id', UsersController.delete);
+routes.get('/users', auth, UsersController.list);
+routes.post('/users', auth, UsersController.create);
+routes.delete('/users/:id', auth, UsersController.delete);
 
-routes.get('/client/:id', ClientController.list);
-routes.put('/client/:id', ClientController.inactivate);
+routes.get('/client/:id', auth, ClientController.list);
+routes.put('/client/:id', auth, ClientController.inactivate);
 
-routes.post('/clients', ClientsController.create);
-routes.get('/clients', ClientsController.list);
-routes.delete('/clients/:id', ClientsController.delete);
-routes.put('/clients/:id', ClientsController.edit);
+routes.post('/clients', auth, ClientsController.create);
+routes.get('/clients', auth, ClientsController.list);
+routes.delete('/clients/:id', auth, ClientsController.delete);
+routes.put('/clients/:id', auth, ClientsController.edit);
 
-routes.get('/product/:id', ProductController.list);
-routes.put('/product/:id', ProductController.inactivate);
+routes.get('/product/:id', auth, ProductController.list);
+routes.put('/product/:id', auth, ProductController.inactivate);
 
-routes.post('/products', ProductsController.create);
+routes.post('/products', auth, ProductsController.create);
 routes.get('/products', auth, ProductsController.list);
-routes.delete('/products/:id', ProductsController.delete);
-routes.put('/products/:id', ProductsController.edit);
+routes.delete('/products/:id', auth, ProductsController.delete);
+routes.put('/products/:id', auth, ProductsController.edit);
 
-routes.get('/provider/:id', ProviderController.list);
-routes.put('/provider/:id', ProviderController.inactivate);
+routes.get('/provider/:id', auth, ProviderController.list);
+routes.put('/provider/:id', auth, ProviderController.inactivate);
 
-routes.post('/providers', ProvidersController.create);
-routes.get('/providers', ProvidersController.list);
-routes.delete('/providers/:id', ProvidersController.delete);
-routes.put('/providers/:id', ProvidersController.edit);
+routes.post('/providers', auth, ProvidersController.create);
+routes.get('/providers', auth, ProvidersController.list);
+routes.delete('/providers/:id', auth, ProvidersController.delete);
+routes.put('/providers/:id', auth, ProvidersController.edit);
 
-routes.get('/budget/:id', BudgetController.list);
-routes.put('/budget/:id', BudgetController.inactivate);
+routes.get('/budget/:id', auth, BudgetController.list);
+routes.put('/budget/:id', auth, BudgetController.inactivate);
 
-routes.post('/budgets', BudgetsController.create);
-routes.get('/budgets', BudgetsController.list);
-routes.delete('/budgets/:id', BudgetsController.delete);
-routes.put('/budgets/:id', BudgetsController.edit);
+routes.post('/budgets', auth, BudgetsController.create);
+routes.get('/budgets', auth, BudgetsController.list);
+routes.delete('/budgets/:id', auth, BudgetsController.delete);
+routes.put('/budgets/:id', auth, BudgetsController.edit);
 
-routes.get('/budgetItem/:id', BudgetItemController.list);
+routes.get('/budgetItem/:id', auth, BudgetItemController.list);
 
-routes.post('/budgetItems', BudgetItemsController.create);
-routes.get('/budgetItems', BudgetItemsController.list);
-routes.delete('/budgetItems/:id', BudgetItemsController.delete);
-routes.put('/budgetItems/:id', BudgetItemsController.edit);
+routes.post('/budgetItems', auth, BudgetItemsController.create);
+routes.get('/budgetItems', auth, BudgetItemsController.list);
+routes.delete('/budgetItems/:id', auth, BudgetItemsController.delete);
+routes.put('/budgetItems/:id', auth, BudgetItemsController.edit);
 
 module.exports = routes;

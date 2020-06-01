@@ -4,11 +4,9 @@ const JWTSecret = "YouShallNotPass";
 function auth(req, res, next){
     const authToken = req.headers['authorization'];
 
-    console.log(authToken);
     if(authToken != undefined){
         const bearer = authToken.split(' ');
         var token = bearer[1];
-        console.log(token);
 
         jwt.verify(token, JWTSecret,(err, data) => {
             if(err){

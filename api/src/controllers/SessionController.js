@@ -12,7 +12,7 @@ module.exports = {
                 var correct = bcrypt.compareSync(body.password, user.password);
     
                 if(correct){
-                    jwt.sign({id: user.id, login: user.login},JWTSecret,{expiresIn:'3m'},(err, token) =>{
+                    jwt.sign({id: user.id, login: user.login},JWTSecret,{expiresIn:'4h'},(err, token) =>{
                         if(err){
                             res.status(400);
                             res.json({err:"Falha interna!"});
