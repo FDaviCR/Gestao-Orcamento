@@ -17,7 +17,7 @@ module.exports = {
                             res.status(400);
                             res.json({err:"Falha interna!"});
                         }else{
-                            res.status(200).json({msg: token})
+                            res.status(200).json({user:body.login ,token: token})
                         }
                     })
                 }else{
