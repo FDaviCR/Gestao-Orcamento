@@ -5,16 +5,33 @@ html {
 }
 body {
     min-height: 100%;
-<<<<<<< HEAD
-    background:  turquoise; /*rgb(58, 58, 110);*/
-    margin-bottom: 5%;
+    background-image: url("../img/background-login.jpg");
 }
 
-h2 {
-    font-size:bold;
-=======
-    background: #33c4c9;
->>>>>>> front-end
+tr {
+    color: white;
+}
+
+h2{
+    color: white;
+}
+
+.brand_logo_container {
+    position: absolute;
+    height: 150px;
+    width: 150px;
+    top: -75px;
+    border-radius: 50%;
+    background: #60a3bc;
+    padding: 10px;
+    text-align: center;
+}
+
+.brand_logo {
+    height: 130px;
+    width: 130px;
+    border-radius: 50%;
+    border: 2px solid white;
 }
 
 .loginBox{
@@ -70,7 +87,6 @@ h2 {
     background:rgba(0, 0, 0, .5);
 }
 
-<<<<<<< HEAD
 .footerAll{
     text-align:center;
     color: rgb(255, 255, 255);
@@ -81,17 +97,6 @@ h2 {
     position: fixed;
     bottom:0;
 }
-=======
-.form-control {
-    flex-direction: row;
-    display: inline-block;
-    margin-bottom: 10px;
-    align-items: center;
-    justify-content: center;
-    margin-right: 10px;
-}
-
->>>>>>> front-end
 
 .footerAll a:link, a:visited {
     color: white;
@@ -99,4 +104,31 @@ h2 {
   
 .footerAll a:link:active, a:visited:active {
     color: red;
+}
+
+.btnBlue {
+    color: white;
+    background-color:#60a3bc;
+}
+
+.tableBackground {
+    background:rgba(0, 0, 0, .1);
+}
+
+.card-header {
+    background:rgba(0, 0, 0, .5);
+}
+
+.tabCad {
+    background:rgba(0, 0, 0, .5);
+}
+
+.card {
+    color: white;
+    border: 2px solid;
+    border-color: black;
+}
+
+.bg-gray{
+    background:rgba(0, 0, 0, .3);
 }

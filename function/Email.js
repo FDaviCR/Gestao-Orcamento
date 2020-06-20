@@ -7,15 +7,15 @@ let transporter = nodemailer.createTransport({
     secure: false,
     auth: {
         user: "davi.jonin@gmail.com", //Adicionar endereço de  email
-        pass: "Shinobiwar"              //Adicionar senha do email
+        pass: "Shinobiwar1994"              //Adicionar senha do email
     }
 });
 
-module.exports = function Email(destinatario, orcamento){
+module.exports = async function Email(destinatario, orcamento){
     this.destinatario = destinatario;
     this.orcamento = orcamento;
 
-    transporter.sendMail({
+    await transporter.sendMail({
         from: "davi.jonin@gmail.com", //Adicionar endereço de  email
         to: destinatario,
         subject: "Orçamento Teste Aptum",

@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
 const connection = new Sequelize(
-    'aptumgst','root','12345',
+    'aptumgst','root','password',
     {
         host: 'localhost',
         dialect: 'mysql',

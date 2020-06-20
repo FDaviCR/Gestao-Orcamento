@@ -3,18 +3,26 @@
 <br>
 <div class="container">
     <div class="card">
-        <div class="card-header">
+        <div class="card-header bg-dark">
             <h2>Atualização de Clientes</h2>
         </div>
-        <div class="card-body">
+        <div class="card-body bg-gray">
             <form method="POST" action="/clientes/update">
+                <label>Nome do Cliente</label>
                 <input class="form-control" type="text" name="nome" placeholder="Defina o nome do cliente" value="<%= cliente.nome %>"><br>
+                <label>CPF</label>
                 <input class="form-control" type="text" name="cpf" placeholder="Preencha com o CPF" value="<%= cliente.cpf %>"><br>
+                <label>CNPJ</label>
                 <input class="form-control" type="text" name="cnpj" placeholder="Preencha com o CNPJ" value="<%= cliente.cnpj %>"><br>
+                <label>Telefone 1</label><br>
                 <input class="form-control" type="tel" name="telefone1" placeholder="Preencha com o telefone 1" value="<%= cliente.telefone1 %>"><br>
+                <label>Telefone 2</label><br>
                 <input class="form-control" type="tel" name="telefone2" placeholder="Preencha com o telefone 2" value="<%= cliente.telefone2 %>"><br>
+                <label>E-mail</label><br>
                 <input class="form-control" type="email" name="email" placeholder="Preencha com o e-mail" value="<%= cliente.email %>"><br>
+                <label>Endereço</label><br>
                 <input class="form-control" type="text" name="endereco" placeholder="Preencha o endereço" value="<%= cliente.endereco %>"><br>
+                <label>Número</label><br>
                 <input class="form-control" type="number" name="numero" placeholder="Preencha o número do endereço" value="<%= cliente.numero %>"><br>
                 
                 <input type="hidden" name="id" value="<%= cliente.id %>">

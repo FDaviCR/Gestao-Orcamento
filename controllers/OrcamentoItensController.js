@@ -94,6 +94,7 @@ router.post("/orcamentos/envioEmail",  adminAuth, (req, res)=>{
     var email = req.body.email;
     var orcamento = req.body.orcamentoCompleto;
 
+
     console.log(email);
     console.log(orcamento);
 
@@ -103,6 +104,7 @@ router.post("/orcamentos/envioEmail",  adminAuth, (req, res)=>{
 
         res.redirect("/orcamentos");
     }else{
+
         res.redirect("/orcamentos");
     }
 });
@@ -156,7 +158,7 @@ router.post("/orcamentos/pdfMail/:id", (req, res)=>{
     var orc = req.body.orcamentoCompleto;
 
     console.log(email);
-    console.log(orc);
+    console.log(id);
     
     Orcamento.findByPk(id, {include:[{model:Cliente}]}).then(orcamento=>{
         if(orcamento != undefined){

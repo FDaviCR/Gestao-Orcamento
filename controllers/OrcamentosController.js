@@ -101,9 +101,6 @@ router.post("/orcamentos/finalizar/:id", (req, res)=>{
     var id = req.params.id;
     var valor = req.body.totalOrcamento;
 
-    console.log(id);
-    console.log(valor);
-
     Orcamento.update({valor:valor},{
         where:{
             id: id

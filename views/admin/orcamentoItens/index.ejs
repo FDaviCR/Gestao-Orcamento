@@ -13,12 +13,12 @@
         <br>
     <form method="POST" action="/orcamentos/finalizar/<%= idOrcamento %>"">
         <input type="hidden" readonly class="form-control" id="totalOrcamento" name="totalOrcamento">
-        <button class="btn btn-outline-success">Finalizar Orçamento</button>
+        <button class="btn btnBlue">Finalizar Orçamento</button>
     </form>
     </div>
 
     <hr>
-    <table id="orcamento-item" class="table table-bordered">
+    <table id="orcamento-item" class="table table-bordered bg-gray">
         <thead>
             <tr>
                 <th>Produto</th>
@@ -48,7 +48,7 @@
     </table>
     <form>
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Total do Orçamento</label>
+            <label class="col-sm-2 col-form-label labelText">Total do Orçamento</label>
             <div class="col-sm-10">
                 <input type="text" readonly class="form-control" id="totalOrcamentoTela">
             </div>
