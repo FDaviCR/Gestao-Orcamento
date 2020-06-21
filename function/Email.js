@@ -2,20 +2,25 @@ const nodemailer = require("nodemailer");
 
 //Configurado para Gmail
 let transporter = nodemailer.createTransport({
+    service: 'Gmail',
     host: "smtp.gmail.com",
     port: 587,
     secure: false,
+    tls: {
+        rejectUnauthorized: false
+    },
     auth: {
         user: "davi.jonin@gmail.com", //Adicionar endereço de  email
-        pass: "Shinobiwar1994"              //Adicionar senha do email
+        pass: "$hinobiw@r1994"        //Adicionar senha do email
     }
 });
 
-module.exports = async function Email(destinatario, orcamento){
+
+module.exports = function Email(destinatario, orcamento){
     this.destinatario = destinatario;
     this.orcamento = orcamento;
 
-    await transporter.sendMail({
+    transporter.sendMail({
         from: "davi.jonin@gmail.com", //Adicionar endereço de  email
         to: destinatario,
         subject: "Orçamento Teste Aptum",
@@ -28,7 +33,7 @@ module.exports = async function Email(destinatario, orcamento){
             }
         ]
     }).then(message => {
-        console.log(message);
+        console.log(message, new Date().getTime());
     }).catch(err =>{
         console.log(err);
     })

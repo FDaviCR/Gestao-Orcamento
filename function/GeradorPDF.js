@@ -11,6 +11,7 @@ app.get("/generateReport", (req, res) => {
           res.send(err);
     } else {
         let options = {
+            "path":"file://" + __dirname+"/views/images",
             "height": "11.25in",
             "width": "8.5in",
             "header": {

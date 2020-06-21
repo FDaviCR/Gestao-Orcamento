@@ -172,6 +172,8 @@ router.post("/orcamentos/pdfMail/:id", (req, res)=>{
                     } else {
                         let options = {
                             "format": "A5",        
+                            "type": "pdf", 
+                            "base":"file://" + __dirname+"/views/images",
                             "orientation": "portrait",
                             "header": {
                                 "height": "20mm"

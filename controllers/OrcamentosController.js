@@ -18,7 +18,9 @@ router.get("/orcamentos", adminAuth, (req, res)=>{
 });
 
 router.get("/admin/orcamentos/new", adminAuth, (req, res)=>{
-    Cliente.findAll().then(clientes=>{
+    Cliente.findAll({
+        where:{ativo: true}
+    }).then(clientes=>{
         res.render("admin/orcamentos/new",{clientes: clientes});
     })
 });

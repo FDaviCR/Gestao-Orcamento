@@ -20,17 +20,30 @@ router.post("/users/create", (req,res) => {
     User.findOne({where:{login: email}}).then( user =>{
         if(user == undefined){
             var salt = bcrypt.genSaltSync(10);
-            var hash = bcrypt.hashSync(password, salt)
+            var hash = bcrypt.hashSync(password, salt);
+            var cad = null
+
+            if(req.session.usuario == undefined){
+                cad = "Usuário Primario";
+            }else{
+                cad = req.session.usuario;
+            }
 
             User.create({
                 login: email,
                 password: hash,
-                usuario: req.session.usuario
+                usuario: cad,
+                ativo: true
             }).then(function(x){
                 console.log(x.id);
-                res.redirect("/");
+                if(req.session.usuario == undefined){
+                    res.redirect("/");
+                }else{
+                    res.redirect("/admin/users/");
+                }
+                
             }).catch((err)=>{
-                res.redirect("/");
+                console.log(err);
             });
         }else{
             res.redirect("/admin/users/create");
@@ -67,6 +80,48 @@ router.post("/authenticate", (req,res) => {
         }
     });
 });
+
+router.post("/users/delete", (req, res)=>{
+    var id = req.body.id;
+    if(id != undefined){
+        if(!isNaN(id)){
+            User.update({ativo: false,usuario: req.session.usuario},{
+                where:{
+                    id:id
+                }
+            }).then(()=>{
+                res.redirect("/admin/users");
+            })
+        }else{
+            res.redirect("/users");
+            console.log("Não-número");
+        }
+    }else{
+        res.redirect("/users");
+    }
+});
+
+
+router.post("/users/reactivate", (req, res)=>{
+    var id = req.body.id;
+    if(id != undefined){
+        if(!isNaN(id)){
+            User.update({ativo: true,usuario: req.session.usuario},{
+                where:{
+                    id:id
+                }
+            }).then(()=>{
+                res.redirect("/admin/users");
+            })
+        }else{
+            res.redirect("/users");
+            console.log("Não-número");
+        }
+    }else{
+        res.redirect("/users");
+    }
+});
+
 
 router.get("/logout", (req,res) =>{
     req.session.user = undefined;
