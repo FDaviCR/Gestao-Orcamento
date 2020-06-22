@@ -16,6 +16,7 @@ h2{
     color: white;
 }
 
+
 .brand_logo_container {
     position: absolute;
     height: 150px;
@@ -136,4 +137,17 @@ h2{
 .dist{
     text-align:center;
     width: 10%;
+}
+
+/*BARRA DE ROLAGEM*/
+
+::-webkit-scrollbar-track {
+    background-color: #F4F4F4;
+}
+::-webkit-scrollbar {
+    width: 6px;
+    background: #F4F4F4;
+}
+::-webkit-scrollbar-thumb {
+    background: black;
 }
