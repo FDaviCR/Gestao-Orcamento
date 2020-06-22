@@ -1,3 +1,4 @@
+/*GERAL*/
 
 html {
     height: 100%;
@@ -10,12 +11,15 @@ body {
 
 tr {
     color: white;
+    text-align: center;
 }
 
 h2{
     color: white;
+    text-align: center;
 }
 
+/*LOGIN*/
 
 .brand_logo_container {
     position: absolute;
@@ -88,25 +92,6 @@ h2{
     background:rgba(0, 0, 0, .5);
 }
 
-.footerAll{
-    text-align:center;
-    color: rgb(255, 255, 255);
-    height: 5%;
-    width: 100%;
-    margin-top:30px;
-    background:rgba(0, 0, 0, .5);
-    position: fixed;
-    bottom:0;
-}
-
-.footerAll a:link, a:visited {
-    color: white;
-}
-  
-.footerAll a:link:active, a:visited:active {
-    color: red;
-}
-
 .btnBlue {
     color: white;
     background-color:#60a3bc;
@@ -150,4 +135,26 @@ h2{
 }
 ::-webkit-scrollbar-thumb {
     background: black;
+}
+
+/*RODAPÉ*/
+
+
+.footerAll{
+    text-align:center;
+    color: rgb(255, 255, 255);
+    height: 5%;
+    width: 100%;
+    margin-top:30px;
+    background:rgba(0, 0, 0, .5);
+    position: fixed;
+    bottom:0;
+}
+
+.footerAll a:link, a:visited {
+    color: white;
+}
+  
+.footerAll a:link:active, a:visited:active {
+    color: red;
 }

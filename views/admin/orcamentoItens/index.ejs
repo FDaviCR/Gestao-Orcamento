@@ -1,20 +1,20 @@
 <%- include ('../../partials/header.ejs')%>
 <%- include ('../../partials/navbar.ejs')%>
 <br>
-<br>
-<hr>
+<div class="dist">
+    <a class="btn btn-info" href="/orcamentos">Voltar</a>
+</div>
 <div class="container">
     <hr>
     <h2>Itens do Orçamento</h2>
     <hr>
     <div style="display: inline">
-    <a class="btn btn-success" href="/orcamentoItens/new/<%= idOrcamento %>">Novo Item</a>
-        <br>
-        <br>
-    <form method="POST" action="/orcamentos/finalizar/<%= idOrcamento %>"">
-        <input type="hidden" readonly class="form-control" id="totalOrcamento" name="totalOrcamento">
-        <button class="btn btnBlue">Finalizar Orçamento</button>
-    </form>
+        <a class="btn btn-success" href="/orcamentoItens/new/<%= idOrcamento %>">Novo Item</a>
+        <a href="/orcamentos/edit/<%= idOrcamento %>" class="btn btn-warning">Editar Orçamento</a>
+        <form method="POST" action="/orcamentos/finalizar/<%= idOrcamento %>" style="display: inline;">
+            <input type="hidden" readonly id="totalOrcamento" name="totalOrcamento">
+            <button class="btn btn-danger">Finalizar Orçamento</button>
+        </form>
     </div>
 
     <hr>
