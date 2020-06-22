@@ -132,3 +132,8 @@ h2{
 .bg-gray{
     background:rgba(0, 0, 0, .3);
 }
+
+.dist{
+    text-align:center;
+    width: 10%;
+}

@@ -1,8 +1,9 @@
 <%- include ('../../partials/header.ejs')%>
 <%- include ('../../partials/navbar.ejs')%>
 <br>
-<br>
-<hr>
+<div class="dist">
+    <a class="btn btn-info" href="/">Voltar</a>
+</div>
 <div class="container">
     <hr>
     <h2>Orçamentos</h2>
@@ -34,7 +35,7 @@
                             <button class="btn btn-danger">Deletar</button>
                         </form>
                         <a href="/orcamentos/visualizar/<%= orcamento.id %>" class="btn btn-dark">Visualizar</a>
-                        <a href="/pedidos/gerar/<%= orcamento.id %>" class="btn btn-success">Gerar Pedido</a>
+                        <!--<a href="/pedidos/gerar/<%= orcamento.id %>" class="btn btn-success">Gerar Pedido</a>-->
                     </td>
                 </tr>
             <% }) %>
