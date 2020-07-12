@@ -16,6 +16,8 @@ const estoqueItensController = require("./controllers/EstoqueItensController");
 const estoqueMovimentacoesController = require("./controllers/EstoqueMovimentacoesController");
 const comprasController = require("./controllers/ComprasController");
 const compraItensController = require("./controllers/CompraItensController");
+const unidadesController = require("./controllers/UnidadesController");
+const categoriasController = require("./controllers/CategoriasController");
 
 const User = require("./models/Users");
 const Produtos = require("./models/Produtos");
@@ -28,6 +30,8 @@ const EstoqueItens = require("./models/EstoqueItens");
 const EstoqueMovimentacoes = require("./models/EstoqueMovimentacoes");
 const Compras = require("./models/Compras");
 const CompraItens = require("./models/CompraItens");
+const Categorias = require("./models/Categorias");
+const Unidades =  require("./models/Unidades");
 
 // View engine
 app.set('view engine','ejs');
@@ -68,6 +72,8 @@ app.use("/", estoqueItensController);
 app.use("/", estoqueMovimentacoesController);
 app.use("/", comprasController);
 app.use("/", compraItensController);
+app.use("/", categoriasController);
+app.use("/", unidadesController);
 
 // Router
 app.get("/", adminAuth, (req, res) => {

@@ -64,11 +64,17 @@
         </div>
     </form>
     <hr>
-    <div>
-        <form method="POST" action="/orcamentos/pdfMail/<%= orcamento.id %>">
+    <div class="form-group row">
+        <form class="lateral" method="POST" action="/orcamentos/pdfMail/<%= orcamento.id %>">
             <input id="email" name="email" type="hidden" value="<%= orcamento.cliente.email %>">
             <input id="orcamentoCompleto" name="orcamentoCompleto" type="hidden" value="<%= orcamento.id %>">
             <button class="btn btnBlue">Enviar Orçamento</button>
+        </form>
+        
+        <form method="POST" action="/orcamentos/pdfDownload/<%= orcamento.id %>">
+            <input id="email" name="email" type="hidden" value="<%= orcamento.cliente.email %>">
+            <input id="orcamentoCompleto" name="orcamentoCompleto" type="hidden" value="<%= orcamento.id %>">
+            <button class="btn btnBlue">Gerar Orçamento PDF</button>
         </form>
     </div>
     <hr>

@@ -17,6 +17,16 @@ tr {
 h2{
     color: white;
     text-align: center;
+    text-shadow: 1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+label{
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.btn{
+    border: 1px solid black;
+    border-style: double;
 }
 
 /*LOGIN*/
@@ -157,4 +167,9 @@ h2{
   
 .footerAll a:link:active, a:visited:active {
     color: red;
+}
+
+.lateral{
+    margin-right: 15px;
+    margin-left: 15px;
 }

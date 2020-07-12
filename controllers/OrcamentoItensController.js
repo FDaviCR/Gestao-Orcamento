@@ -205,6 +205,56 @@ router.post("/orcamentos/pdfMail/:id", (req, res)=>{
     });
 });
 
+router.post("/orcamentos/pdfDownload/:id", (req, res)=>{
+    var id = req.params.id;
+    var email = req.body.email;
+    var orc = req.body.orcamentoCompleto;
+
+    console.log(email);
+    console.log(id);
+    
+    Orcamento.findByPk(id, {include:[{model:Cliente}]}).then(orcamento=>{
+        if(orcamento != undefined){
+            OrcamentoItens.findAll({
+                where:{ orcamentoId: id},
+                include: [{model: Produto}]
+            }).then(orcamentoItens=>{
+                ejs.renderFile(path.join(__dirname, './views/', "template.ejs"), {orcamentoItens:orcamentoItens,orcamento:orcamento}, (err, data) => {
+                    if (err) {
+                          res.send(err);
+                    } else {
+                        let options = {
+                            "format": "A5",        
+                            "type": "pdf", 
+                            "orientation": "portrait",
+                            "header": {
+                                "height": "20mm"
+                            },
+                            "footer": {
+                                "height": "20mm",
+                            },
+                        };
+                        pdf.create(data, options).toFile("report.pdf", function (err, data) {
+                            if (err) {
+                                res.redirect("/orcamentos/visualizar/"+id);
+                            } else {
+                                var filePath = "./report.pdf"; //caminho do arquivo completo
+                                var fileName = "orcamento.pdf"; // O nome padrão que o browser vai usar pra fazer download
+
+                                res.download(filePath, fileName);                         
+                            }
+                        });
+                    }
+                });
+            });
+        }else{
+            res.redirect("/orcamentos");
+        }
+    }).catch(err=>{
+        console.log(err);
+        res.redirect("/");
+    });
+});
 
 module.exports = router;
 

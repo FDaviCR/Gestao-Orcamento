@@ -12,13 +12,13 @@
         <div class="card-body bg-gray">
             <form method="POST" action="/clientes/update">
                 <label>Nome do Cliente</label>
-                <input class="form-control" type="text" name="nome" placeholder="Defina o nome do cliente" value="<%= cliente.nome %>"><br>
+                <input class="form-control" type="text" name="nome" placeholder="Defina o nome do cliente" value="<%= cliente.nome %>" required><br>
                 <label>CPF</label>
                 <input class="form-control" type="text" name="cpf" placeholder="Preencha com o CPF" value="<%= cliente.cpf %>"><br>
                 <label>CNPJ</label>
                 <input class="form-control" type="text" name="cnpj" placeholder="Preencha com o CNPJ" value="<%= cliente.cnpj %>"><br>
                 <label>Telefone 1</label><br>
-                <input class="form-control" type="tel" name="telefone1" placeholder="Preencha com o telefone 1" value="<%= cliente.telefone1 %>"><br>
+                <input class="form-control" type="tel" name="telefone1" placeholder="Preencha com o telefone 1" value="<%= cliente.telefone1 %>" required><br>
                 <label>Telefone 2</label><br>
                 <input class="form-control" type="tel" name="telefone2" placeholder="Preencha com o telefone 2" value="<%= cliente.telefone2 %>"><br>
                 <label>E-mail</label><br>
