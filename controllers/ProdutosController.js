@@ -1,11 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const Produtos = require("../models/Produtos");
+const Categorias = require("../models/Categorias");
+const Unidades = require("../models/Unidades");
 const adminAuth = require("../middleware/adminAuth");
 
 
 router.get("/produtos/new", adminAuth, (req, res)=>{
-    res.render("admin/produtos/new");
+    Categorias.findAll().then(categorias=>{
+        Unidades.findAll().then(unidades=>{
+            res.render("admin/produtos/new",{unidades: unidades, categorias: categorias});
+        })
+    })   
 });
 
 router.post("/produtos/save", (req, res)=>{
@@ -72,7 +78,11 @@ router.get("/produtos/edit/:id", adminAuth,(req, res)=>{
 
     Produtos.findByPk(id).then(produto=>{
         if(produto != undefined){
-            res.render("admin/produtos/edit",{produto:produto});
+            Categorias.findAll().then(categorias=>{
+                Unidades.findAll().then(unidades=>{
+                    res.render("admin/produtos/edit",{produto:produto,unidades: unidades, categorias: categorias});
+                })
+            })   
         }else{
             res.redirect("/produtos");
         }

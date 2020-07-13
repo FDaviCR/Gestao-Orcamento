@@ -1,0 +1,53 @@
+<%- include ('../../partials/header.ejs')%>
+<%- include ('../../partials/navbar.ejs')%>
+<br>
+<div class="dist">
+    <a class="btn btn-info" href="/">Voltar</a>
+</div>
+<div class="container">
+    <hr>
+    <h2>Unidades</h2>
+    <hr>
+    <a class="btn btn-success" href="/unidades/new">Nova Unidade</a>
+    <hr>
+    <table class="table table-bordered bg-gray">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Unidade</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% unidades.forEach(unidade=>{ %>
+                <tr>
+                    <th><%= unidade.id %></th>
+                    <th><%= unidade.nome%></th>
+                    <th>
+                        <a href="/unidades/edit/<%= unidade.id %>" class="btn btn-warning">Editar</a>
+                        <form method="POST" action="/unidades/delete" style="display: inline;" onsubmit="confirmarDelecao(event, this)">
+                            <input type="hidden" name="id" value="<%= unidade.id %>">
+                            <button class="btn btn-danger">Deletar</button>
+                        </form>
+                    </th>
+                </tr>
+            <%}) %>
+        </tbody>
+    </table>
+</div>
+
+<%- include ('../../partials/footer.ejs')%>
+
+<script>
+    function confirmarDelecao(event, form){
+        event.preventDefault();
+        var decision = confirm("Você quer deletar a categoria?");
+        if(decision){
+            form.submit();
+        }else{
+            console.log("Foi um acidente");
+        }
+
+    }
+
+</script>

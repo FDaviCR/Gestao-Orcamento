@@ -1,8 +1,10 @@
 <%- include ('../../partials/header.ejs')%>
 <%- include ('../../partials/navbar.ejs')%>
 <br>
-<div class="dist">
-    <a class="btn btn-info" href="/produtos">Voltar</a>
+<div class="form-group row">
+    <a class="btn btn-info lateral" href="/produtos">Voltar</a>
+    <a class="btn btn-success lateral" href="/categorias/new">Nova Categoria</a>
+    <a class="btn btn-success lateral" href="/unidades/new">Nova Unidade</a>
 </div>
 <div class="container">
 <div class="container">
@@ -16,9 +18,9 @@
                 <input class="form-control" type="text" name="produto" placeholder="Defina o nome do produto"><br>
                 <label>Categoria</label>
                 <select id="categoria" name="categoria" class="form-control">
-                    <option value="">Selecione uma categoria</option>
-                    <option value="papelaria">Papelaria</option>
-                    <option value="designer">Designer</option>
+                    <% categorias.forEach((categoria)=>{ %>
+                        <option value="<%= categoria.id %>"><%= categoria.nome %></option>
+                    <% }) %>
                 </select><br>
                 <label>Valor</label>
                 <input class="form-control" type="number" min="0" step="any" name="valor" placeholder="Defina um valor"><br>
@@ -26,10 +28,9 @@
                 <input class="form-control" type="number" min="0" step="any" name="custo" placeholder="Defina um custo"><br>
                 <label>Unidade</label>
                 <select id="unidade" name="unidade" class="form-control">
-                    <option value="">Selecione uma unidade</option>
-                    <option value="UN">Unidades</option>
-                    <option value="KG">Quilos</option>
-                    <option value="LT">Litros</option>
+                    <% unidades.forEach((unidade)=>{ %>
+                        <option value="<%= unidade.id %>"><%= unidade.nome %></option>
+                    <% }) %>
                 </select><br>
 
                 <button class="btn btn-primary">Cadastrar</button>

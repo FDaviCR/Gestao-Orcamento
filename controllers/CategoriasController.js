@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const categorias = require("../models/Categorias");
+const Categorias = require("../models/Categorias");
 const adminAuth = require("../middleware/adminAuth");
-const con = require("../database/database");
 
 
 router.get("/categorias/new", adminAuth, (req, res)=>{
@@ -10,28 +9,51 @@ router.get("/categorias/new", adminAuth, (req, res)=>{
 });
 
 router.post("/categorias/save", (req, res)=>{
-    var nome = req.body.nome;
-    var status = req.body.status;
-	
-    if(nome != undefined){
-        con.query('INSERT INTO categorias (nome,status,usuario) VALUES (:nome,:status,:usuario)',{
-            replacements: {
-                nome:nome,detalhes:detalhes,status:status,usuario: req.session.usuario
-            },
-            type: con.QueryTypes.INSERT
-         
+    var nome = req.body.categoria;
+    
+    console.log( req.session.usuario)
+    if(nome != undefined || nome != ' '){
+        Categorias.create({
+            nome: nome,
+            usuario: req.session.usuario,
+            ativo: true
         }).then(()=>{
             res.redirect("/categorias");
         })
+        
     }else{
         res.redirect("admin/categorias/new");
     }
 });
 
 router.get("/categorias", adminAuth,(req, res)=>{
-    categorias.findAll().then(categorias =>{
+    Categorias.findAll({
+        where: {ativo: true}
+    }).then(categorias =>{
         res.render("admin/categorias/index", {categorias:categorias});
     });
+});
+
+router.post("/categorias/delete", (req, res)=>{
+    var id = req.body.id;
+    if(id != undefined){
+        if(!isNaN(id)){
+            Categorias.update({ativo:false,usuario: req.session.usuario},{
+                where:{
+                    id:id
+                }
+            }).then(()=>{
+                res.redirect("/categorias");
+                console.log("Apagou");
+            })
+        }else{
+            res.redirect("/categorias");
+            console.log("Não-número");
+        }
+    }else{
+        res.redirect("/categorias/new");
+        console.log("Vazio");
+    }
 });
 
 router.get("/categorias/edit/:id", adminAuth,(req, res)=>{
@@ -41,9 +63,9 @@ router.get("/categorias/edit/:id", adminAuth,(req, res)=>{
         res.redirect("/categorias");
     }
 
-    categorias.findByPk(id).then(estoque=>{
-        if(estoque != undefined){
-            res.render("admin/categorias/edit",{estoque:estoque});
+    Categorias.findByPk(id).then(categoria=>{
+        if(categoria != undefined){
+            res.render("admin/categorias/edit",{categoria:categoria});
         }else{
             res.redirect("/categorias");
         }
@@ -54,10 +76,9 @@ router.get("/categorias/edit/:id", adminAuth,(req, res)=>{
 
 router.post("/categorias/update", (req, res)=>{
     var id = req.body.id;
-    var nome = req.body.nome;
-    var status = req.body.status;
+    var nome = req.body.categoria;
 
-    categorias.update({nome:nome, status:status, usuario: req.session.usuario},{
+    Categorias.update({nome: nome, usuario: req.session.usuario },{
         where:{
             id:id
         }

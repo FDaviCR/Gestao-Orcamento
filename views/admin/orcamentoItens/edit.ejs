@@ -17,7 +17,7 @@
                         <%if(produto.id == orcamentoItens.produtoId) {%>
                             <option value="<%= produto.id %>" data-valor="<%= produto.valor %>" selected><%= produto.produto %></option>
                         <% } else { %>
-                            <option value="<%= produto.id %>" data-valor="<%= produto.valor %>"<%= produto.produto %></option>
+                            <option value="<%= produto.id %>" data-valor="<%= produto.valor %>"<%= produto.produto %></option> 
                         <% } %>
                     <% }) %>
                 </select><br>
@@ -25,10 +25,13 @@
                 <input class="form-control" type="number" id="quantidade" name="quantidade" placeholder="Defina uma quantidade" value="<%= orcamentoItens.quantidade %>" onblur="calcular()">
                 <label>Desconto:</label>
                 <select id="desconto" name="desconto" class="form-control">
-                    <option value="0">Selecione o desconto</option>
                     <option value="1">Sem desconto</option>
-                    <option value="0.9">10% de desconto</option>
+                    <option value="0.95">5% de desconto</option>
+                    <option value="0.9">10% de desconto</option>  
+                    <option value="0.85">15% de desconto</option>             
                     <option value="0.8">20% de desconto</option>
+                    <option value="0.75">25% de desconto</option>
+                    <option value="0.7">30% de desconto</option>
                 </select>
                 <label>Valor Unitario:</label>
                 <input class="form-control" type="text" id="unitario" name="unitario"readonly>

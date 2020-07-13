@@ -16,7 +16,11 @@ const Produto = connection.define('produtos',{
         allowNull: true
     },
     unidade:{
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    categoria:{
+        type: Sequelize.INTEGER,
         allowNull: false
     },
     usuario:{

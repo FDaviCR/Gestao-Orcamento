@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const unidades = require("../models/Unidades");
+const Unidades = require("../models/Unidades");
 const adminAuth = require("../middleware/adminAuth");
-const con = require("../database/database");
 
 
 router.get("/unidades/new", adminAuth, (req, res)=>{
@@ -10,28 +9,51 @@ router.get("/unidades/new", adminAuth, (req, res)=>{
 });
 
 router.post("/unidades/save", (req, res)=>{
-    var nome = req.body.nome;
-    var status = req.body.status;
-	
-    if(nome != undefined){
-        con.query('INSERT INTO unidades (nome,status,usuario) VALUES (:nome,:status,:usuario)',{
-            replacements: {
-                nome:nome,detalhes:detalhes,status:status,usuario: req.session.usuario
-            },
-            type: con.QueryTypes.INSERT
-         
+    var nome = req.body.unidade;
+    
+    console.log( req.session.usuario)
+    if(nome != undefined || nome != ' '){
+        Unidades.create({
+            nome: nome,
+            usuario: req.session.usuario,
+            ativo: true
         }).then(()=>{
             res.redirect("/unidades");
         })
+        
     }else{
         res.redirect("admin/unidades/new");
     }
 });
 
 router.get("/unidades", adminAuth,(req, res)=>{
-    unidades.findAll().then(unidades =>{
+    Unidades.findAll({
+        where: {ativo: true}
+    }).then(unidades =>{
         res.render("admin/unidades/index", {unidades:unidades});
     });
+});
+
+router.post("/unidades/delete", (req, res)=>{
+    var id = req.body.id;
+    if(id != undefined){
+        if(!isNaN(id)){
+            Unidades.update({ativo:false,usuario: req.session.usuario},{
+                where:{
+                    id:id
+                }
+            }).then(()=>{
+                res.redirect("/unidades");
+                console.log("Apagou");
+            })
+        }else{
+            res.redirect("/unidades");
+            console.log("Não-número");
+        }
+    }else{
+        res.redirect("/unidades/new");
+        console.log("Vazio");
+    }
 });
 
 router.get("/unidades/edit/:id", adminAuth,(req, res)=>{
@@ -41,9 +63,9 @@ router.get("/unidades/edit/:id", adminAuth,(req, res)=>{
         res.redirect("/unidades");
     }
 
-    unidades.findByPk(id).then(estoque=>{
-        if(estoque != undefined){
-            res.render("admin/unidades/edit",{estoque:estoque});
+    Unidades.findByPk(id).then(unidade=>{
+        if(unidade != undefined){
+            res.render("admin/unidades/edit",{unidade:unidade});
         }else{
             res.redirect("/unidades");
         }
@@ -54,10 +76,9 @@ router.get("/unidades/edit/:id", adminAuth,(req, res)=>{
 
 router.post("/unidades/update", (req, res)=>{
     var id = req.body.id;
-    var nome = req.body.nome;
-    var status = req.body.status;
+    var nome = req.body.unidade;
 
-    unidades.update({nome:nome, status:status, usuario: req.session.usuario},{
+    Unidades.update({nome: nome, usuario: req.session.usuario },{
         where:{
             id:id
         }
