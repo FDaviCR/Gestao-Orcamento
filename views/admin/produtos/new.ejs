@@ -19,7 +19,7 @@
                 <label>Categoria</label>
                 <select id="categoria" name="categoria" class="form-control">
                     <% categorias.forEach((categoria)=>{ %>
-                        <option value="<%= categoria.id %>"><%= categoria.nome %></option>
+                        <option state="<%= categoria.ativo %>" value="<%= categoria.id %>"><%= categoria.nome %></option>
                     <% }) %>
                 </select><br>
                 <label>Valor</label>
@@ -29,7 +29,7 @@
                 <label>Unidade</label>
                 <select id="unidade" name="unidade" class="form-control">
                     <% unidades.forEach((unidade)=>{ %>
-                        <option value="<%= unidade.id %>"><%= unidade.nome %></option>
+                        <option state="<%= unidade.ativo %>" value="<%= unidade.id %>"><%= unidade.nome %></option>
                     <% }) %>
                 </select><br>
 
@@ -41,3 +41,11 @@
 </div>
 
 <%- include ('../../partials/footer.ejs')%>
+
+<script>
+    var unidades = document.getElementById('unidade');
+    console.log(unidades);
+
+    var categorias = document.getElementById('categoria');
+    console.log(categorias);
+</script>

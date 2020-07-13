@@ -10,7 +10,9 @@
     <hr>
     <a class="btn btn-success" href="/clientes/new">Novo Cliente</a>
     <hr>
-    <table class="table table-bordered bg-gray">
+    <input class="form-control pesquisa" id="filtro-clientes" placeholder="Pesquise o cliente"/>
+    <hr>
+    <table id="lista-clientes" class="table table-bordered bg-gray">
         <thead>
             <tr>
                 <th>Id</th>
@@ -39,6 +41,17 @@
 <%- include ('../../partials/footer.ejs')%>
 
 <script>
+    var filtro = document.getElementById('filtro-clientes');
+    var tabela = document.getElementById('lista-clientes');
+    filtro.onkeyup = function() {
+        var nomeFiltro = filtro.value;
+        for (var i = 1; i < tabela.rows.length; i++) {
+            var conteudoCelula = tabela.rows[i].cells[1].innerText;
+            var corresponde = conteudoCelula.toLowerCase().indexOf(nomeFiltro) >= 0;
+            tabela.rows[i].style.display = corresponde ? '' : 'none';
+        }
+    };
+
     function confirmarDelecao(event, form){
         event.preventDefault();
         var decision = confirm("Você quer deletar o cliente?");

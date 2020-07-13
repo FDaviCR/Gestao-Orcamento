@@ -61,8 +61,6 @@ router.post("/authenticate", (req,res) => {
     var password = req.body.password;
     req.session.usuario = login;
 
-    console.log(req.session.usuario);
-
     User.findOne({where:{login:login}}).then(user=>{
         if(user != undefined){
             var correct = bcrypt.compareSync(password, user.password);

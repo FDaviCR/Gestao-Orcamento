@@ -7,8 +7,10 @@ const adminAuth = require("../middleware/adminAuth");
 
 
 router.get("/produtos/new", adminAuth, (req, res)=>{
-    Categorias.findAll().then(categorias=>{
-        Unidades.findAll().then(unidades=>{
+    Categorias.findAll({
+        where: {ativo: true}
+    }).then(categorias=>{
+        Unidades.findAll({where: {ativo: true}}).then(unidades=>{
             res.render("admin/produtos/new",{unidades: unidades, categorias: categorias});
         })
     })   
@@ -78,8 +80,8 @@ router.get("/produtos/edit/:id", adminAuth,(req, res)=>{
 
     Produtos.findByPk(id).then(produto=>{
         if(produto != undefined){
-            Categorias.findAll().then(categorias=>{
-                Unidades.findAll().then(unidades=>{
+            Categorias.findAll({where: {ativo: true}}).then(categorias=>{
+                Unidades.findAll({where: {ativo: true}}).then(unidades=>{
                     res.render("admin/produtos/edit",{produto:produto,unidades: unidades, categorias: categorias});
                 })
             })   
