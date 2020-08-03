@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 const connection = new Sequelize(
     
-    'aptumgst','root1994','password',
+    'impresso.com','gri','Graficarapida2020',
     {
         host: 'mysql669.umbler.com',
         dialect: 'mysql',
